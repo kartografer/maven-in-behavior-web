@@ -1,6 +1,4 @@
-# Web
-
-Personal Website
+# Maven in Behavior website
 
 ## Angular Getting Started
 
