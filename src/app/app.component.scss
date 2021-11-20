@@ -70,35 +70,6 @@
       }
     }
   }
-
-  .page-1 {
-    background-color: transparent;
-
-    .uk-first-column {
-      padding-left: 0px;
-    }
-
-    p {
-      color: #fff;
-    }
-  }
-
-  .page-2 {
-    background-color: #425a78;
-
-    .uk-first-column {
-      padding-left: 0px;
-    }
-
-    footer {
-      bottom: 0;
-      text-align: center;
-
-      a {
-        color: #fff;
-      }
-    }
-  }
 }
 
 @-webkit-keyframes bounce {
