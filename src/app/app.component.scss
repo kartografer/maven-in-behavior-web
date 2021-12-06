@@ -1,3 +1,46 @@
 .page-navbar {
-  background: #fff;
+  background: rgba(201, 214, 213, 0.9);
+}
+
+.navbar-mobile {
+  margin-left: 25%;
+  top: inherit;
+}
+
+.uk-offcanvas-bar {
+  background: rgba(201, 214, 213);
+}
+
+@media screen and (max-width: 900px) {
+  .uk-logo img {
+    width: 150px;
+    height: 150px;
+  }
+
+  .navbar-mobile {
+    display: block;
+  }
+
+  .navbar {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .navbar-mobile {
+    margin-left: 10%;
+    top: inherit;
+  }
+}
+
+@media screen and (min-width: 900px) {
+  .navbar-mobile {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .container-hero-large {
+    min-height: 800px;
+  }
 }

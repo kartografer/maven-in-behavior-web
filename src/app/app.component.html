@@ -1,9 +1,56 @@
+<div class="uk-container uk-container-expand">
+  <div class="uk-position-top">
+    <nav
+      class="uk-navbar-container uk-navbar-transparent page-navbar"
+      uk-navbar
+    >
+      <div class="uk-navbar-center">
+        <div class="uk-navbar-left navbar">
+          <ul class="uk-navbar-nav">
+            <li class="uk-parent"><a href="#about">About</a></li>
+            <li class="uk-parent"><a href="#services">Services</a></li>
+          </ul>
+        </div>
+        <a href="" class="uk-navbar-item uk-logo"
+          ><img
+            data-src="assets/img/mib-logo.svg"
+            width="200px"
+            height="200px"
+            uk-img
+        /></a>
+        <div class="uk-navbar-right navbar">
+          <ul class="uk-navbar-nav">
+            <li class="uk-parent"><a href="#insurances">Insuraces</a></li>
+            <li class="uk-parent"><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="uk-navbar-center-right navbar-mobile">
+          <a
+            class="uk-navbar-toggle"
+            uk-navbar-toggle-icon
+            uk-toggle
+            href="#offcanvas-slide"
+          ></a>
+        </div>
+      </div>
+    </nav>
+    <div id="offcanvas-slide" uk-offcanvas>
+      <div class="uk-offcanvas-bar">
+        <button class="uk-offcanvas-close" type="button" uk-close></button>
+        <ul class="uk-nav uk-nav-default">
+          <li class="uk-parent"><a href="#about">About</a></li>
+          <li class="uk-parent"><a href="#services">Services</a></li>
+          <li class="uk-parent"><a href="#insurances">Insuraces</a></li>
+          <li class="uk-parent"><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div
-  class="
-    uk-container uk-container-expand uk-background-cover
-    container-hero-large
-  "
-  style="background-image: url(assets/img/placeholder_600x400.svg)"
+  class="uk-container-expand uk-background-cover container-hero-large"
+  style="background-image: url(assets/img/hero-kid-blocks.jpg)"
 >
   <div class="uk-padding-large uk-align-center">
     <!-- <div class="uk-text-center">
@@ -12,89 +59,90 @@
       <h1>Maven In Behavior</h1>
     </div> -->
   </div>
-  <div class="uk-position-top">
-    <nav
-      class="uk-navbar-container uk-navbar-transparent page-navbar"
-      uk-navbar
-      uk-sticky
-    >
-      <div class="uk-navbar-left">
-        <a href="" class="uk-navbar-item uk-logo">Maven In Behavior</a>
-      </div>
-      <div class="uk-navbar-center">
-        <ul class="uk-navbar-nav">
-          <li class="uk-active"><a href="">About</a></li>
-          <li class="uk-parent"><a href="">Services</a></li>
-          <li class="uk-parent"><a href="">Insuraces</a></li>
-        </ul>
-      </div>
-    </nav>
-  </div>
 </div>
 
 <div class="uk-section uk-container-expand">
-  <div class="uk-container">
-    <h1 class="uk-heading-medium">Call to Action</h1>
-    <div class="uk-grid-match uk-child-width-1-2@m uk-padding-medium" uk-grid>
-      <div class="uk-placeholde">
-        <p>Call Us!</p>
-      </div>
-      <div>
-        <p>Sign Up Form</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="uk-container uk-container-expand uk-margin-xlarge-top">
-    <h1 class="uk-heading-medium">About Us!</h1>
+  <div class="uk-container uk-container-expand" id="about">
+    <h1 class="uk-heading-medium">Maven in Behavior</h1>
     <div class="uk-panel uk-padding-medium">
       <img
-        class="uk-align-center uk-align-left@m uk-margin-remove-adjacent"
-        data-src="assets/img/placeholder_600x400.svg"
+        class="
+          uk-align-center
+          uk-align-left@m
+          uk-margin-remove-adjacent
+          uk-border-pill
+        "
+        data-src="assets/img/alana.jpg"
         width="400"
         heigh="200"
         uk-img
       />
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-        commodo consequat.
-      </p>
-      <p>
-        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-        dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua.
-      </p>
+      <article class="uk-article">
+        <h1 class="uk-article-title">Alana Usategui Guilarte, M.S,BCBA</h1>
+        <p class="uk-text-meta">Owner & Founder</p>
+        <p>
+          Alana is a Board Certified Behavior Analyst and the founder and owner
+          of Maven in Behavior. For the last 15 years Alana has been working
+          with children on the Autism Spectrum. In 2015, Alana received her
+          Masters Degree in Applied Behavior Analysis from Nova South Eastern
+          University and in 2017 became certified as a Behavior Analyst.
+        </p>
+        <p>
+          Prior to her work as a BCBA, Alana was a special education teacher in
+          New York City, as well as in Miami. Alana’s interest in this field
+          began when her younger twin brothers were diagnosed with Autism and
+          she saw first-hand the success of a well implemented ABA program.
+          Alana also received a double bachelors degree in Psychology and
+          Special Education from New York University.
+        </p>
+        <p>
+          Alana’s personal background as well as her experience in a variety of
+          special education settings gives her a unique approach in not only how
+          she personally tailors programs for her clients, but as well as how
+          she relates to the staff she works with and the families she serves.
+        </p>
+      </article>
     </div>
+    <p class="uk-text-center uk-text-bold uk-text-lead">
+      To schedule a free 30 minute phone consultation, please call
+      <a href="tel:305-586-2953">(305) 586-2953</a> or email
+      <a href="mailto:info@maveninbehavior.com">Maven In Behavior</a>
+    </p>
   </div>
 
-  <div class="uk-container uk-container-expand uk-margin-xlarge-top">
+  <div
+    class="uk-container uk-container-expand uk-margin-xlarge-top"
+    id="services"
+  >
     <h1 class="uk-heading-medium">Services</h1>
     <div class="uk-child-width-1-2@s uk-padding-medium" uk-grid>
       <div>
         <div class="uk-card uk-card-default uk-width-1-1@m">
           <div class="uk-card-header">
             <div class="uk-grid-small uk-flex-middle" uk-grid>
-              <div class="uk-width-auto">
+              <!-- <div class="uk-width-auto">
                 <img
                   class="uk-border-circle"
                   width="40"
                   height="40"
                   src="assets/img/placeholder_600x400.svg"
                 />
-              </div>
+              </div> -->
               <div class="uk-width-expand">
-                <h3 class="uk-card-title uk-margin-remove-bottom">Title</h3>
+                <h3 class="uk-card-title uk-margin-remove-bottom">
+                  ABA Therapy
+                </h3>
               </div>
             </div>
           </div>
           <div class="uk-card-body">
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt.
+              Applied Behavior Analysis (ABA) is a scientific approach to
+              understanding behavior. Maven in Behavior’s individualized therapy
+              programs incorporate verbal behavior and natural environment
+              teaching to target skills such as such as communication, daily
+              living skills, social skills, and work on decreasing problem
+              behaviors.
             </p>
           </div>
         </div>
@@ -103,23 +151,20 @@
         <div class="uk-card uk-card-default uk-width-1-1@m">
           <div class="uk-card-header">
             <div class="uk-grid-small uk-flex-middle" uk-grid>
-              <div class="uk-width-auto">
-                <img
-                  class="uk-border-circle"
-                  width="40"
-                  height="40"
-                  src="assets/img/placeholder_600x400.svg"
-                />
-              </div>
               <div class="uk-width-expand">
-                <h3 class="uk-card-title uk-margin-remove-bottom">Title</h3>
+                <h3 class="uk-card-title uk-margin-remove-bottom">
+                  Parent Training and Consulations
+                </h3>
               </div>
             </div>
           </div>
           <div class="uk-card-body">
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt.
+              Trainings are always provided alongside with your child’s
+              individualized intervention plan. Maven in Behavior provides
+              trainings and consultations aimed to help parents better
+              understand their child’s programming and successfully generalize
+              acquired skills to their child’s day to day life.
             </p>
           </div>
         </div>
@@ -128,23 +173,19 @@
         <div class="uk-card uk-card-default uk-width-1-1@m">
           <div class="uk-card-header">
             <div class="uk-grid-small uk-flex-middle" uk-grid>
-              <div class="uk-width-auto">
-                <img
-                  class="uk-border-circle"
-                  width="40"
-                  height="40"
-                  src="assets/img/placeholder_600x400.svg"
-                />
-              </div>
               <div class="uk-width-expand">
-                <h3 class="uk-card-title uk-margin-remove-bottom">Title</h3>
+                <h3 class="uk-card-title uk-margin-remove-bottom">
+                  School Consulations
+                </h3>
               </div>
             </div>
           </div>
           <div class="uk-card-body">
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt.
+              School consultations include teacher and staff trainings as it
+              relates to Applied Behavior Analysis. Maven in Behavior also
+              offers classroom behavior supports to help improve classroom
+              management strategies.
             </p>
           </div>
         </div>
@@ -153,54 +194,115 @@
         <div class="uk-card uk-card-default uk-width-1-1@m">
           <div class="uk-card-header">
             <div class="uk-grid-small uk-flex-middle" uk-grid>
-              <div class="uk-width-auto">
-                <img
-                  class="uk-border-circle"
-                  width="40"
-                  height="40"
-                  src="assets/img/placeholder_600x400.svg"
-                />
-              </div>
               <div class="uk-width-expand">
-                <h3 class="uk-card-title uk-margin-remove-bottom">Title</h3>
+                <h3 class="uk-card-title uk-margin-remove-bottom">
+                  Potty Training
+                </h3>
               </div>
             </div>
           </div>
           <div class="uk-card-body">
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt.
+              Potty training is a necessary life skill and critical for
+              independent living. Maven in Behavior uses an ABA based and
+              individualized protocol to teach the skills necessary to
+              successfully use a bathroom independently.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="uk-card uk-card-default uk-width-1-1@m">
+          <div class="uk-card-header">
+            <div class="uk-grid-small uk-flex-middle" uk-grid>
+              <div class="uk-width-expand">
+                <h3 class="uk-card-title uk-margin-remove-bottom">
+                  Picky Eating & Food Refusal
+                </h3>
+              </div>
+            </div>
+          </div>
+          <div class="uk-card-body">
+            <p>
+              Picky eating and food refusal are commonly seen amongst children
+              today. Maven in Behavior uses a behavioral approach to target
+              individualized goals such as decreasing food refusal behaviors and
+              increasing variety in diet. To intervene successfully, it is
+              important that all medical causes for food refusal or evaluated
+              prior to treatment.
             </p>
           </div>
         </div>
       </div>
     </div>
+    <p class="uk-text-center">
+      Services are offered in-home as well as via Telehealth
+    </p>
   </div>
 
-  <div class="uk-container uk-container-expand uk-margin-xlarge-top">
+  <div
+    class="uk-container uk-container-expand uk-margin-xlarge-top"
+    id="insurances"
+  >
     <h1 class="uk-heading-medium">Insurances</h1>
     <div
-      class="uk-child-width-expand@s uk-text-center uk-padding-medium"
+      class="
+        uk-text-center
+        uk-grid-small
+        uk-grid-column-small
+        uk-grid-row-large
+        uk-child-width-1-3@s
+        uk-grid-match
+        uk-padding-medium
+      "
       uk-grid
     >
       <div>
-        <div class="uk-card uk-card-default uk-card-body">Item</div>
+        <div class="uk-card uk-card-default uk-card-body">Cigna</div>
       </div>
       <div>
-        <div class="uk-card uk-card-default uk-card-body">Item</div>
+        <div class="uk-card uk-card-default uk-card-body">Aetna</div>
       </div>
       <div>
-        <div class="uk-card uk-card-default uk-card-body">Item</div>
+        <div class="uk-card uk-card-default uk-card-body">Magellan</div>
+      </div>
+      <div>
+        <div class="uk-card uk-card-default uk-card-body">Tricare</div>
+      </div>
+      <div>
+        <div class="uk-card uk-card-default uk-card-body">Florida Medicaid</div>
+      </div>
+      <div>
+        <div class="uk-card uk-card-default uk-card-body">
+          Step Up/Gardiner Scholarship
+        </div>
       </div>
     </div>
+    <p class="uk-text-center">Private Pay accepted</p>
   </div>
 </div>
 
 <div class="uk-section">
-  <div class="uk-container footer">
+  <div class="uk-container footer" id="contact">
     <footer class="uk-text-center">
-      <i class="fas fa-envelope-open-text"></i>
-      Email: <a href="mailto:joel@tailormade.systems">Joel Guilarte</a>
+      <div>
+        <img
+          data-src="assets/img/mib-logo.svg"
+          width="350px"
+          heigh="350px"
+          uk-img
+        />
+      </div>
+      <div>
+        <p>
+          <i class="fas fa-envelope-open-text"></i>
+          Email: <a href="mailto:info@maveninbehavior.com">Maven In Behavior</a>
+        </p>
+        <p>
+          <i class="fas fa-phone"></i>
+          Phone: <a href="tel:305-586-2953">(305) 586-2953</a>
+        </p>
+      </div>
     </footer>
   </div>
 </div>

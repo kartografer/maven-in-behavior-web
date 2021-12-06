@@ -1,4 +1,78 @@
 /* You can add global styles to this file, and also import other style files */
+
+html {
+  color: #6a7187;
+  // background: rgba(236, 209, 206, 0.1);
+  background: rgba(201, 214, 213, 0.1);
+}
+
+.uk-link,
+a {
+  color: #c99190;
+}
+
+.uk-link-toggle:focus .uk-link,
+.uk-link-toggle:hover .uk-link,
+.uk-link:hover,
+a:hover {
+  color: #6a7187;
+}
+
+.uk-h1,
+.uk-h2,
+.uk-h3,
+.uk-h4,
+.uk-h5,
+.uk-h6,
+.uk-heading-2xlarge,
+.uk-heading-large,
+.uk-heading-medium,
+.uk-heading-small,
+.uk-heading-xlarge,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #6a7187;
+}
+
+.uk-card-default .uk-card-title,
+.uk-card-default {
+  color: #6a7187;
+}
+
+.uk-text-lead {
+  color: #6a7187;
+}
+
+.uk-offcanvas-bar .uk-nav-default > li > a,
+.uk-offcanvas-bar[_ngcontent-mvw-c16] a[_ngcontent-mvw-c16] {
+  color: #6a7187;
+}
+
+.uk-card-primary.uk-card-body .uk-close,
+.uk-card-primary > :not([class*='uk-card-media']) .uk-close,
+.uk-card-secondary.uk-card-body .uk-close,
+.uk-card-secondary > :not([class*='uk-card-media']) .uk-close,
+.uk-light .uk-close,
+.uk-offcanvas-bar .uk-close,
+.uk-overlay-primary .uk-close,
+.uk-section-primary:not(.uk-preserve-color) .uk-close,
+.uk-section-secondary:not(.uk-preserve-color) .uk-close,
+.uk-tile-primary:not(.uk-preserve-color) .uk-close,
+.uk-tile-secondary:not(.uk-preserve-color) .uk-close {
+  color: #6a7187;
+}
+
+.uk-navbar-nav > li > a,
+.uk-navbar-nav > li:hover > a,
+.uk-navbar-nav > li > a.uk-open,
+.uk-navbar-nav > li > a:focus {
+  color: #6a7187;
+}
+
 .uk-padding-medium {
   padding: 42px;
 }
