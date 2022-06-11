@@ -12,7 +12,7 @@ describe('AppComponent', () => {
     })
   )
 
-  const TITLE = 'joel Guilarte'
+  const TITLE = 'Maven in Behavior'
 
   it('should create the app', () => {
     const fixture = TestBed.createComponent(AppComponent)
@@ -24,8 +24,7 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent)
     fixture.detectChanges()
     const compiled = fixture.debugElement.nativeElement
-    expect(compiled.querySelector('.opening-act-h1').textContent).toContain(
-      TITLE
-    )
+    const aboutSection = compiled.querySelector('#about')
+    expect(aboutSection.children[0].textContent).toContain(TITLE)
   })
 })
