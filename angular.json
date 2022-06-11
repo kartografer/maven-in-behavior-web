@@ -118,8 +118,14 @@
           }
         },
         "deploy": {
-          "builder": "angular-cli-ghpages:deploy",
-          "options": {}
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "web:build:production",
+            "firebaseProject": "maveninbehavior-6c5a6",
+            "firebaseHostingSite": "maveninbehavior-6c5a6"
+          }
         }
       }
     }

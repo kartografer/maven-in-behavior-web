@@ -1,20 +1,26 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
-### Angular
+# angular
 
-# compiled output
+## compiled output
 /dist
 /tmp
 /out-tsc
 # Only exists if Bazel was run
 /bazel-out
 
-# dependencies
+## dependencies
 /node_modules
 
-# profiling files
+## profiling files
 chrome-profiler-events*.json
 speed-measure-plugin*.json
+
+# firebase
+**/.firebase
+**/.firebaserc
+**/database-debug.log
+**/firebase-debug.log
 
 # IDEs and editors
 /.idea
@@ -43,13 +49,9 @@ yarn-error.log
 testem.log
 /typings
 
-# System Files
-.DS_Store
-Thumbs.db
+# Python
 
-### Python
-
-# Byte-compiled / optimized / DLL files
+## Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 *$py.class
@@ -57,7 +59,7 @@ __pycache__/
 # C extensions
 *.so
 
-# Distribution / packaging
+## distribution / packaging
 .Python
 build/
 develop-eggs/
@@ -78,17 +80,17 @@ share/python-wheels/
 *.egg
 MANIFEST
 
-# PyInstaller
+## pyInstaller
 #  Usually these files are written by a python script from a template
 #  before PyInstaller builds the exe, so as to inject date/other infos into it.
 *.manifest
 *.spec
 
-# Installer logs
+## installer logs
 pip-log.txt
 pip-delete-this-directory.txt
 
-# Unit test / coverage reports
+## uniit test / coverage reports
 htmlcov/
 .tox/
 .nox/
@@ -102,57 +104,50 @@ coverage.xml
 .hypothesis/
 .pytest_cache/
 
-# Translations
+## translations
 *.mo
 *.pot
 
-# Django stuff:
+## django stuff:
 *.log
 local_settings.py
 db.sqlite3
 db.sqlite3-journal
 
-# Flask stuff:
+## flask stuff:
 instance/
 .webassets-cache
 
-# Scrapy stuff:
+## scrapy stuff:
 .scrapy
 
-# Sphinx documentation
+## sphinx documentation
 docs/_build/
 
-# PyBuilder
+## pyBuilder
 target/
 
-# Jupyter Notebook
+## jupyter notebook
 .ipynb_checkpoints
 
-# IPython
+## IPython
 profile_default/
 ipython_config.py
 
-# pyenv
+## pyenv
 .python-version
 
-# pipenv
-#   According to pypa/pipenv#598, it is recommended to include Pipfile.lock in version control.
-#   However, in case of collaboration, if having platform-specific dependencies or dependencies
-#   having no cross-platform support, pipenv may install dependencies that don't work, or not
-#   install all needed dependencies.
-#Pipfile.lock
-
-# pyflow
+## pyflow
 __pypackages__/
 
-# Celery stuff
+## celery stuff
 celerybeat-schedule
 celerybeat.pid
 
-# SageMath parsed files
+## SageMath parsed files
 *.sage.py
 
-# Environments
+## environments
 .env
 .venv
 env/
@@ -161,24 +156,29 @@ ENV/
 env.bak/
 venv.bak/
 
-# Spyder project settings
+## spyder project settings
 .spyderproject
 .spyproject
 
-# Rope project settings
+## rope project settings
 .ropeproject
 
-# mkdocs documentation
+## mkdocs documentation
 /site
 
-# mypy
+## mypy
 .mypy_cache/
 .dmypy.json
 dmypy.json
 
-# Pyre type checker
+## pyre type checker
 .pyre/
 
-### Ansible
+# System Files
+.DS_Store
+Thumbs.db
 
-*.retry
+# Firebase
+.firebase
+*-debug.log
+.runtimeconfig.json
