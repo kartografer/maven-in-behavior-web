@@ -31,3 +31,25 @@ jobs:
         run: npm run build --if-present
       - name: test
         run: npm test
+  deploy_live_website:
+    runs-on: ubuntu-latest
+    if: contains(github.ref, 'main')
+    needs: build
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js 16.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+          cache: 'npm'
+      - name: npm initialize
+        run: npm ci
+      - name: build
+        run: npm run build:prod
+      - name: firebase deploy
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_MAVENINBEHAVIOR_6C5A6 }}'
+          projectId: maveninbehavior-6c5a6
+          channelId: live
