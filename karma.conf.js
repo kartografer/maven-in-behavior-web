@@ -5,7 +5,7 @@ process.env.CHROME_BIN = require('puppeteer').executablePath()
 
 module.exports = function (config) {
   config.set({
-    browsers: ['ChromeHeadless'],
+    browsers: ['Chrome'],
     customLaunchers: {
       ChromeHeadlessCI: {
         base: 'ChromeHeadless',
@@ -31,10 +31,7 @@ module.exports = function (config) {
       clearContext: false, // leave Jasmine Spec Runner output visible in browser
     },
     coverageReporter: {
-      dir: require('path').join(
-        __dirname,
-        '<%= relativePathToWorkspaceRoot %>/coverage/<%= appName%>'
-      ),
+      dir: require('path').join(__dirname, './coverage/mib-web'),
       subdir: '.',
       reporters: [{ type: 'html' }, { type: 'text-summary' }],
       fixWebpackSourcePaths: true,
@@ -44,7 +41,7 @@ module.exports = function (config) {
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    singleRun: true,
+    singleRun: false,
     restartOnFileChange: true,
   })
 }
