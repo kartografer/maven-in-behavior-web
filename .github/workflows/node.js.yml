@@ -9,21 +9,18 @@ on:
   pull_request:
     branches: ['main']
 
+env:
+  NODE_VERSION: '24.x'
+
 jobs:
   build:
     runs-on: ubuntu-24.04
-
-    strategy:
-      matrix:
-        node-version: [18.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-
     steps:
       - uses: actions/checkout@v4
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Use Node.js ${{ env.NODE_VERSION }}
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: ${{ env.NODE_VERSION }}
           cache: 'npm'
       - name: npm initialize
         run: npm ci
@@ -32,15 +29,15 @@ jobs:
       - name: test
         run: npm test
   deploy_live_website:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     if: contains(github.ref, 'main')
     needs: build
     steps:
       - uses: actions/checkout@v4
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Use Node.js ${{ env.NODE_VERSION }}
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: ${{ env.NODE_VERSION }}
           cache: 'npm'
       - name: npm initialize
         run: npm ci

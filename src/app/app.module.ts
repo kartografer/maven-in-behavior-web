@@ -9,13 +9,11 @@ import { providePerformance, getPerformance } from '@angular/fire/performance'
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
+  imports: [BrowserModule, AppRoutingModule],
+  providers: [
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     providePerformance(() => getPerformance()),
   ],
-  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
