@@ -1,478 +1,271 @@
-<div class="uk-container uk-container-expand">
-  <div class="uk-position-top">
-    <nav
-      class="uk-navbar-container uk-navbar-transparent page-navbar"
-      uk-navbar
-    >
-      <div class="uk-navbar-center">
-        <a href="" class="uk-navbar-item uk-logo"
-          ><img
-            data-src="assets/img/mib-logo.svg"
-            width="200px"
-            height="200px"
-            uk-img
-        /></a>
-        <div class="uk-navbar-right navbar">
-          <ul class="uk-navbar-nav">
-            <li class="uk-parent"><a href="#about">About</a></li>
-            <li class="uk-parent"><a href="#services">Services</a></li>
-            <li class="uk-parent"><a href="#insurances">Insurances</a></li>
-            <li class="uk-parent"><a href="#team">Team</a></li>
-            <li class="uk-parent"><a href="#contact">Contact</a></li>
-          </ul>
-        </div>
-        <div class="uk-navbar-center-right navbar-mobile">
-          <a
-            class="uk-navbar-toggle"
-            uk-navbar-toggle-icon
-            uk-toggle
-            href="#offcanvas-slide"
-          ></a>
-        </div>
+<div *ngIf="isCmsRoute && editing" class="adminbar" style="display: flex">
+  <span>Owner editor · Changes save online individually</span
+  ><button (click)="finishEditing()">Finish editing</button
+  ><span role="status">{{ status }}</span>
+</div>
+<header>
+  <a href="#" aria-label="Maven in Behavior home"
+    ><img
+      src="assets/brand/maven-logo.png"
+      alt="Maven in Behavior — ABA therapy in Miami, Florida"
+  /></a>
+  <nav>
+    <a href="#about">Our approach</a><a href="#services">Services</a
+    ><a href="#team">Our team</a><a href="#insurance">Insurance</a>
+  </nav>
+  <button
+    *ngIf="isCmsRoute"
+    class="edit"
+    (click)="startEditing()"
+    [hidden]="editing || signingIn"
+    [disabled]="signingIn"
+  >
+    Edit website ↗
+  </button>
+</header>
+<main>
+  <section class="hero">
+    <div>
+      <div class="eyebrow">South Miami, Florida · Since 2021</div>
+      <h1>A place to grow.<br />A team who cares.</h1>
+      <p id="heroText">{{ content.heroText }}</p>
+      <a href="#contact" class="button">Let’s take the next step ↗</a>
+      <div class="actions" *ngIf="isCmsRoute && editing">
+        <button (click)="editText('heroText')">Edit introduction</button>
       </div>
-    </nav>
-    <div id="offcanvas-slide" uk-offcanvas>
-      <div class="uk-offcanvas-bar">
-        <button class="uk-offcanvas-close" type="button" uk-close></button>
-        <ul class="uk-nav uk-nav-default">
-          <li class="uk-parent"><a href="#about">About</a></li>
-          <li class="uk-parent"><a href="#services">Services</a></li>
-          <li class="uk-parent"><a href="#insurances">Insurances</a></li>
-          <li class="uk-parent"><a href="#team">Team</a></li>
-          <li class="uk-parent"><a href="#contact">Contact</a></li>
-        </ul>
+      <p class="tiny">CHILD-CENTERED CARE. MEANINGFUL CONNECTION.</p>
+    </div>
+    <div class="hero-art">
+      <img
+        src="assets/brand/maven-logo.png"
+        alt="Maven in Behavior floral brand mark"
+      />
+    </div>
+  </section>
+  <div class="ribbon">
+    INDIVIDUALIZED CARE &nbsp; ✳ &nbsp; FAMILY PARTNERSHIP &nbsp; ✳ &nbsp;
+    MEANINGFUL PROGRESS
+  </div>
+  <section class="intro" id="about">
+    <div>
+      <div class="eyebrow">Rooted in care</div>
+      <h2>Your child’s journey.<br />Our shared purpose.</h2>
+    </div>
+    <div>
+      <p id="aboutText">{{ content.aboutText }}</p>
+      <p>
+        We believe every child deserves to feel safe, supported, and truly
+        known. Together, we build confidence and meaningful skills for everyday
+        life.
+      </p>
+      <div class="actions" *ngIf="isCmsRoute && editing">
+        <button (click)="editText('aboutText')">Edit approach</button>
       </div>
     </div>
-  </div>
-</div>
-
-<div
-  class="uk-container-expand uk-background-cover container-hero-large"
-  style="background-image: url(assets/img/hero-kid-blocks.jpg)"
->
-  <div class="uk-padding-large uk-align-center">
-    <!-- <div class="uk-text-center">
-      <h1>Welcome</h1>
-      <p>to</p>
-      <h1>Maven In Behavior</h1>
-    </div> -->
-  </div>
-</div>
-
-<div class="uk-section uk-container-expand">
-  <div class="uk-container uk-container-expand" id="about">
-    <h1 class="uk-heading-medium">Maven in Behavior</h1>
-    <div class="uk-panel">
-      <article class="uk-article">
-        <p>
-          Maven in Behavior is a BCBA-founded and owned company providing high
-          quality Applied Behavior Analysis (ABA) therapy. Maven in Behavior is
-          center-based and we work with children and adolescents diagnosed with
-          Autism as well as individuals exhibiting maladaptive behaviors and
-          social deficits. At Maven in Behavior, we strive to provide high
-          quality therapy by using evidence-based approaches and interventions.
-        </p>
-        <p>
-          Maven in Behavior offers a variety of services at our therapy center.
-          We offer 1:1 ABA therapy, parent training and consultations, school
-          consultations, potty training, as well as treating picky eating and
-          food refusal. Home and school visits may be available, upon request.
-        </p>
-        <p>
-          Maven in Behavior works with several insurance companies, please
-          contact us to verify if we are in network with your plan.
-        </p>
-      </article>
-    </div>
-    <div class="uk-panel uk-padding-large uk-padding-remove-bottom">
-      <p class="uk-text-center uk-text-bold uk-text-lead">
-        To schedule a free 30 minute phone consultation, please call
-        <a href="tel:305-586-2953">(305) 586-2953</a> or email
-        <a href="mailto:info@maveninbehavior.com">Maven In Behavior Inc.</a>
+  </section>
+  <section id="services">
+    <div class="section-top">
+      <div>
+        <h2>Care that meets<br />your family where you are.</h2>
+      </div>
+      <p>
+        Individual strengths, real-life goals, and a plan built around your
+        child.
       </p>
     </div>
-  </div>
-
-  <div
-    class="uk-container uk-container-expand uk-margin-xlarge-top"
-    id="services"
-  >
-    <h1 class="uk-heading-medium">Services</h1>
-    <div class="uk-child-width-1-2@s uk-padding-medium" uk-grid>
-      <div>
-        <div class="uk-card uk-card-default uk-width-1-1@m">
-          <div class="uk-card-header">
-            <div class="uk-grid-small uk-flex-middle" uk-grid>
-              <!-- <div class="uk-width-auto">
-                <img
-                  class="uk-border-circle"
-                  width="40"
-                  height="40"
-                  src="assets/img/placeholder_600x400.svg"
-                />
-              </div> -->
-              <div class="uk-width-expand">
-                <h3 class="uk-card-title uk-margin-remove-bottom">
-                  ABA Therapy
-                </h3>
-              </div>
-            </div>
-          </div>
-          <div class="uk-card-body">
-            <p>
-              Applied Behavior Analysis (ABA) is a scientific approach to
-              understanding behavior. Maven in Behavior’s individualized therapy
-              programs incorporate verbal behavior and natural environment
-              teaching to target skills such as such as communication, daily
-              living skills, social skills, and work on decreasing problem
-              behaviors.
-            </p>
-          </div>
+    <div id="services-list" class="grid">
+      <article
+        class="card"
+        *ngFor="let item of content.services; let i = index"
+      >
+        <div class="number">{{ i + 1 }} /</div>
+        <h3>{{ item.name }}</h3>
+        <p>{{ item.description }}</p>
+        <div class="actions" *ngIf="isCmsRoute && editing">
+          <button (click)="editItem('services', item)">Edit</button
+          ><button (click)="deleteItem('services', item)">Delete</button>
         </div>
-      </div>
-      <div>
-        <div class="uk-card uk-card-default uk-width-1-1@m">
-          <div class="uk-card-header">
-            <div class="uk-grid-small uk-flex-middle" uk-grid>
-              <!-- <div class="uk-width-auto">
-                <img
-                  class="uk-border-circle"
-                  width="40"
-                  height="40"
-                  src="assets/img/placeholder_600x400.svg"
-                />
-              </div> -->
-              <div class="uk-width-expand">
-                <h3 class="uk-card-title uk-margin-remove-bottom">
-                  The Launchpad
-                </h3>
-              </div>
-            </div>
-          </div>
-          <div class="uk-card-body">
-            <p>
-              The Launchpad is a specialized school readiness program founded by
-              Maven in Behavior. The Launchpad is a comprehensive ABA based
-              school readiness program for learners ages 3-5. This program runs
-              through the school year and also offers a summer intensive
-              program.
-            </p>
-          </div>
-        </div>
-      </div>
-      <div>
-        <div class="uk-card uk-card-default uk-width-1-1@m">
-          <div class="uk-card-header">
-            <div class="uk-grid-small uk-flex-middle" uk-grid>
-              <div class="uk-width-expand">
-                <h3 class="uk-card-title uk-margin-remove-bottom">
-                  Parent Training and Consultations
-                </h3>
-              </div>
-            </div>
-          </div>
-          <div class="uk-card-body">
-            <p>
-              Trainings are always provided alongside with your child’s
-              individualized intervention plan. Maven in Behavior provides
-              trainings and consultations aimed to help parents better
-              understand their child’s programming and successfully generalize
-              acquired skills to their child’s day to day life.
-            </p>
-          </div>
-        </div>
-      </div>
-      <div>
-        <div class="uk-card uk-card-default uk-width-1-1@m">
-          <div class="uk-card-header">
-            <div class="uk-grid-small uk-flex-middle" uk-grid>
-              <div class="uk-width-expand">
-                <h3 class="uk-card-title uk-margin-remove-bottom">
-                  School Consultations
-                </h3>
-              </div>
-            </div>
-          </div>
-          <div class="uk-card-body">
-            <p>
-              School consultations include teacher and staff trainings as it
-              relates to Applied Behavior Analysis. Maven in Behavior also
-              offers classroom behavior supports to help improve classroom
-              management strategies.
-            </p>
-          </div>
-        </div>
-      </div>
-      <div>
-        <div class="uk-card uk-card-default uk-width-1-1@m">
-          <div class="uk-card-header">
-            <div class="uk-grid-small uk-flex-middle" uk-grid>
-              <div class="uk-width-expand">
-                <h3 class="uk-card-title uk-margin-remove-bottom">
-                  Potty Training
-                </h3>
-              </div>
-            </div>
-          </div>
-          <div class="uk-card-body">
-            <p>
-              Potty training is a necessary life skill and critical for
-              independent living. Maven in Behavior uses an ABA based and
-              individualized protocol to teach the skills necessary to
-              successfully use a bathroom independently.
-            </p>
-          </div>
-        </div>
-      </div>
-      <div>
-        <div class="uk-card uk-card-default uk-width-1-1@m">
-          <div class="uk-card-header">
-            <div class="uk-grid-small uk-flex-middle" uk-grid>
-              <div class="uk-width-expand">
-                <h3 class="uk-card-title uk-margin-remove-bottom">
-                  Picky Eating & Food Refusal
-                </h3>
-              </div>
-            </div>
-          </div>
-          <div class="uk-card-body">
-            <p>
-              Picky eating and food refusal are commonly seen amongst children
-              today. Maven in Behavior uses a behavioral approach to target
-              individualized goals such as decreasing food refusal behaviors and
-              increasing variety in diet. To intervene successfully, it is
-              important that all medical causes for food refusal or evaluated
-              prior to treatment.
-            </p>
-          </div>
-        </div>
-      </div>
+      </article>
     </div>
-  </div>
-
-  <div
-    class="uk-container uk-container-expand uk-margin-xlarge-top"
-    id="insurances"
-  >
-    <h1 class="uk-heading-medium">Insurances</h1>
-    <div
-      class="uk-text-center uk-grid-small uk-grid-column-small uk-grid-row-large uk-child-width-1-3@s uk-grid-match uk-padding-medium"
-      uk-grid
+    <div class="actions" *ngIf="isCmsRoute && editing">
+      <button class="add" (click)="editItem('services')">+ Add service</button>
+    </div>
+  </section>
+  <section class="staff" id="team">
+    <div class="section-top">
+      <div>
+        <div class="eyebrow">People behind the progress</div>
+        <h2>Meet your Maven team.</h2>
+      </div>
+      <p>Compassionate care begins with meaningful relationships.</p>
+    </div>
+    <div id="staff-list" class="grid">
+      <article class="card" *ngFor="let item of content.staff">
+        <div class="portrait">
+          <img
+            *ngIf="item.photo; else initials"
+            [src]="item.photo"
+            [alt]="item.name"
+            [style.object-position]="photoPosition(item)"
+          /><ng-template #initials
+            ><span>{{ item.name.charAt(0) }}</span></ng-template
+          >
+        </div>
+        <h3>{{ item.name }}</h3>
+        <p>{{ item.role }}</p>
+        <p>{{ item.description }}</p>
+        <div class="actions" *ngIf="isCmsRoute && editing">
+          <button (click)="editItem('staff', item)">Edit</button
+          ><button (click)="deleteItem('staff', item)">Delete</button>
+        </div>
+      </article>
+      <p *ngIf="!content.staff.length">Our team profiles are coming soon.</p>
+    </div>
+    <div class="actions" *ngIf="isCmsRoute && editing">
+      <button class="add" (click)="editItem('staff')">
+        + Add staff member
+      </button>
+    </div>
+  </section>
+  <section class="insurance" id="insurance">
+    <div class="eyebrow">Making care accessible</div>
+    <h2>Let’s navigate insurance, together.</h2>
+    <p id="insuranceText">{{ content.insuranceText }}</p>
+    <div class="actions" *ngIf="isCmsRoute && editing">
+      <button (click)="editText('insuranceText')">
+        Edit insurance introduction
+      </button>
+    </div>
+    <div id="insurance-list" class="pills">
+      <article class="pill" *ngFor="let item of content.insurance">
+        <span>{{ item.name }}</span>
+        <div class="actions" *ngIf="isCmsRoute && editing">
+          <button (click)="editItem('insurance', item)">Edit</button
+          ><button (click)="deleteItem('insurance', item)">Delete</button>
+        </div>
+      </article>
+    </div>
+    <div class="actions" *ngIf="isCmsRoute && editing">
+      <button (click)="editItem('insurance')">+ Add insurance</button>
+    </div>
+  </section>
+  <section class="contact" id="contact">
+    <div class="eyebrow">You don’t have to figure it out alone</div>
+    <h2>A new chapter starts<br />with a conversation.</h2>
+    <p id="contactText">{{ content.contactText }}</p>
+    <a
+      class="button"
+      id="contactLink"
+      [hidden]="!content.contactEmail"
+      [href]="'mailto:' + content.contactEmail"
+      >Get in touch ↗</a
     >
-      <div>
-        <div class="uk-card uk-card-default uk-card-body">Cigna</div>
-      </div>
-      <div>
-        <div class="uk-card uk-card-default uk-card-body">Aetna</div>
-      </div>
-      <div>
-        <div class="uk-card uk-card-default uk-card-body">Florida Blue</div>
-      </div>
-      <div>
-        <div class="uk-card uk-card-default uk-card-body">Magellan</div>
-      </div>
-      <div>
-        <div class="uk-card uk-card-default uk-card-body">
-          Family Empowerment Scholarship
-        </div>
-      </div>
-      <div>
-        <div class="uk-card uk-card-default uk-card-body">
-          Private Pay Accepted!
-        </div>
-      </div>
+    <div
+      class="actions"
+      *ngIf="isCmsRoute && editing"
+      style="justify-content: center"
+    >
+      <button (click)="editText('contactText')">Edit contact message</button
+      ><button (click)="editText('contactEmail')">Set contact email</button>
     </div>
-  </div>
-</div>
-
-<div class="uk-container uk-container-expand uk-margin-xlarge-top" id="team">
-  <h1 class="uk-heading-medium">Team</h1>
-  <div class="uk-child-width-1-2@s uk-padding-medium" uk-grid>
-    <div>
-      <div class="uk-card uk-card-default uk-width-1-1@m">
-        <div class="uk-card-header">
-          <div class="uk-grid-small uk-flex-middle" uk-grid>
-            <div class="uk-width-auto">
-              <img
-                class="uk-border-circle"
-                width="175"
-                height="175"
-                src="assets/img/alana.jpg"
-                alt="Alana Usategui Guilarte, M.S.,BCBA, Owner and Founder"
-              />
-            </div>
-            <div class="uk-width-expand">
-              <h2 class="uk-card-title uk-margin-remove-bottom">Alana</h2>
-              Usategui Guilarte, M.S.,BCBA, Owner and Founder
-              <p class="uk-text-meta">Owner & Founder</p>
-            </div>
-          </div>
+  </section>
+</main>
+<footer>
+  <span>Maven in Behavior · South Miami, Florida</span
+  ><span>Individualized care. Meaningful partnerships.</span
+  ><span
+    >© <span id="year">{{ year }}</span> Maven in Behavior</span
+  >
+</footer>
+<p class="status" role="status" style="text-align: center">{{ error }}</p>
+<dialog #editor (close)="clearPreview()">
+  <form (ngSubmit)="save()">
+    <h3>{{ textKey ? 'Edit website text' : 'Edit ' + section }}</h3>
+    <ng-container *ngIf="textKey; else itemFields"
+      ><label
+        >{{ textKey === 'contactEmail' ? 'Contact email' : 'Text'
+        }}<textarea
+          *ngIf="textKey !== 'contactEmail'"
+          name="text"
+          maxlength="10000"
+          [(ngModel)]="textValue"
+        ></textarea
+        ><input
+          *ngIf="textKey === 'contactEmail'"
+          name="email"
+          type="email"
+          [(ngModel)]="textValue" /></label></ng-container
+    ><ng-template #itemFields
+      ><label
+        >Name<input
+          name="name"
+          required
+          maxlength="150"
+          [(ngModel)]="draft.name" /></label
+      ><label *ngIf="section === 'staff'"
+        >Role / credentials<input
+          name="role"
+          maxlength="200"
+          [(ngModel)]="draft.role" /></label
+      ><label *ngIf="section !== 'insurance'"
+        >{{ section === 'staff' ? 'Biography' : 'Description'
+        }}<textarea
+          name="description"
+          maxlength="6000"
+          [(ngModel)]="draft.description"
+        ></textarea></label
+      ><ng-container *ngIf="section === 'staff'"
+        ><label
+          >Staff photo<input
+            type="file"
+            accept="image/jpeg,image/png,image/webp"
+            (change)="selectPhoto($event)"
+        /></label>
+        <div
+          class="portrait editor-preview"
+          *ngIf="preview || draft.photo"
+          [style.aspect-ratio]="previewRatio"
+        >
+          <img
+            [src]="preview || draft.photo"
+            alt="Staff photo positioning preview"
+            [style.object-position]="photoPosition(draft)"
+          />
         </div>
-        <div class="uk-card-body">
-          <p>
-            Alana is a Board Certified Behavior Analyst and the founder and
-            owner of Maven in Behavior Inc. For the last 15 years Alana has been
-            working with children on the Autism Spectrum. In 2015, Alana
-            received her Masters Degree in Applied Behavior Analysis from Nova
-            South Eastern University. In 2017 Alana became a Board Certified
-            Behavior Analyst and opened the doors of Maven in Behavior in
-            December 2021.
-          </p>
-          <p>
-            Prior to her work as a BCBA, Alana was a special education teacher
-            in New York City, as well as in Miami. Alana’s interest in this
-            field began when her younger twin brothers were diagnosed with
-            Autism and she saw first-hand the success of a well implemented ABA
-            program. Alana also received a double bachelors degree in Psychology
-            and Special Education from New York University.
-          </p>
-          <p>
-            Alana’s personal background as well as her experience in a variety
-            of special education settings gives her a unique approach in not
-            only how she personally tailors programs for her clients, but as
-            well as how she relates to the staff she works with and the families
-            she serves.
-          </p>
-        </div>
-      </div>
-    </div>
-    <div>
-      <div class="uk-card uk-card-default uk-width-1-1@m">
-        <div class="uk-card-header">
-          <div class="uk-grid-small uk-flex-middle" uk-grid>
-            <div class="uk-width-auto">
-              <img
-                class="uk-object-cover uk-border-circle"
-                width="175"
-                height="175"
-                src="assets/img/christina.jpg"
-                alt="Christina Rodriguez, M.S.,BCBA, Clinical Director"
-              />
-            </div>
-            <div class="uk-width-expand">
-              <h2 class="uk-card-title uk-margin-remove-bottom">Christina</h2>
-              Rodriguez, M.S.,BCBA, Clinical Director
-            </div>
-          </div>
-        </div>
-        <div class="uk-card-body">
-          <p>
-            Christina is a Board Certified Behavior Analyst since 2021 and has
-            been working in the field since 2007. Before becoming a BCBA,
-            Christina was a special education teacher for over ten years and as
-            an autism specialist at the University of Miami. Christina’s vast
-            experience in both education and behavior analysis help her to
-            provide quality information to families and best practices to
-            clients. Christina is the owner and founder of OJM behavioral
-            services. Maven in Behavior and OJM will be working collaboratively
-            to provide behavioral services and educational supports that will
-            include: IEP support, classroom observations,and trainings.
-          </p>
-        </div>
-      </div>
-    </div>
-    <div>
-      <div class="uk-card uk-card-default uk-width-1-1@m">
-        <div class="uk-card-header">
-          <div class="uk-grid-small uk-flex-middle" uk-grid>
-            <div class="uk-width-auto">
-              <img
-                class="uk-border-circle"
-                width="175"
-                height="175"
-                src="assets/img/paola.jpg"
-                alt="Paola Guareschi, M.S.,BCBA"
-              />
-            </div>
-            <div class="uk-width-expand">
-              <h2 class="uk-card-title uk-margin-remove-bottom">Paola</h2>
-              Guareschi, M.S.,BCBA
-            </div>
-          </div>
-        </div>
-        <div class="uk-card-body">
-          <p>
-            Paola is a dedicated professional in the field of Applied Behavior
-            Analysis (ABA), with a robust academic background and hands-on
-            experience. Originally from Venezuela, Paola earned her Master’s
-            degree in ABA from the University of Miami. Since entering the field
-            in 2021, she has been committed to applying her expertise to improve
-            the lives of those she serves. Her work is driven by a passion for
-            behavioral science and a deep-seated desire to make a positive
-            impact in her community.
-          </p>
-        </div>
-      </div>
-    </div>
-    <div>
-      <div class="uk-card uk-card-default uk-width-1-1@m">
-        <div class="uk-card-header">
-          <div class="uk-grid-small uk-flex-middle" uk-grid>
-            <div class="uk-width-auto">
-              <img
-                class="uk-border-circle"
-                width="175"
-                height="175"
-                src="assets/img/lya.jpg"
-                alt="Lya Lauture, RBT"
-              />
-            </div>
-            <div class="uk-width-expand">
-              <h2 class="uk-card-title uk-margin-remove-bottom">Lya</h2>
-              Lauture, RBT
-            </div>
-          </div>
-        </div>
-        <div class="uk-card-body">
-          <p>
-            Lya is an RBT here at Maven in Behavior. She is continuing her
-            education to obtain her master’s in applied behavior analysis to
-            gain her BCBA certification. Her enthusiasm for watching children
-            learn and thrive drives her commitment to providing compassionate
-            and effective support in every session.
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="uk-section">
-  <div class="uk-container footer" id="contact">
-    <footer class="uk-text-center">
-      <div>
-        <img
-          data-src="assets/img/mib-logo.svg"
-          width="350px"
-          heigh="350px"
-          uk-img
-        />
-      </div>
-      <address>
-        <p>
-          <i class="fas fa-envelope-open-text"></i>
-          Email:
-          <a class="uk-padding-small" href="mailto:info@maveninbehavior.com"
-            >info&#64;maveninbehavior.com</a
+        <label
+          >Horizontal position<input
+            type="range"
+            name="photoX"
+            min="0"
+            max="100"
+            [(ngModel)]="draft.photoX" /></label
+        ><label
+          >Vertical position<input
+            type="range"
+            name="photoY"
+            min="0"
+            max="100"
+            [(ngModel)]="draft.photoY"
+        /></label>
+        <div class="actions">
+          <button type="button" (click)="centerPhoto()">Center photo</button
+          ><button
+            type="button"
+            (click)="removePhoto()"
+            *ngIf="preview || draft.photo"
           >
-          <br />
-          <i class="fas fa-phone"></i>
-          Phone:
-          <a class="uk-padding-small" href="tel:305-586-2953">(305) 586-2953</a>
-        </p>
-        <p>
-          <a
-            href="https://www.google.com/maps/search/?api=1&query=7701+SW+62nd+Ave+STE+200,+South+Miami,+FL+33143"
-            target="_blank"
-            >7000 SW 62nd Ave STE 407<br />
-            South Miami, FL 33143</a
-          >
-        </p>
-        <p>
-          <i class="fas fa-copyright"></i>
-          Maven In Behavior Inc.
-        </p>
-      </address>
-    </footer>
-  </div>
-</div>
+            Remove photo
+          </button>
+        </div></ng-container
+      ></ng-template
+    >
+    <p class="status" role="status">{{ dialogStatus }}</p>
+    <div class="dialog-buttons">
+      <button type="submit" [disabled]="saving">
+        {{ saving ? 'Saving…' : 'Save changes' }}</button
+      ><button type="button" (click)="closeEditor()" [disabled]="saving">
+        Cancel
+      </button>
+    </div>
+  </form>
+</dialog>

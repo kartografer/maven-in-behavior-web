@@ -1,78 +1,431 @@
-/* You can add global styles to this file, and also import other style files */
-
+@font-face {
+  font-family: 'Abigail';
+  src: url(assets/brand/brand-font-0.otf);
+}
+@font-face {
+  font-family: 'Baskit';
+  src: url(assets/brand/brand-font-1.otf);
+}
+@font-face {
+  font-family: 'TM Sans';
+  src: url(assets/brand/brand-font-2.otf);
+}
+@font-face {
+  font-family: Instrument;
+  src: url('assets/brand/brand-font-3.ttf');
+}
+* {
+  box-sizing: border-box;
+}
 html {
-  color: #6a7187;
-  // background: rgba(236, 209, 206, 0.1);
-  background: rgba(201, 214, 213, 0.1);
+  scroll-behavior: smooth;
 }
-
-.uk-link,
-a {
-  color: #c99190;
+body {
+  margin: 0;
+  background: #f7f3ee;
+  color: #334436;
+  font:
+    17px/1.65 'Baskit',
+    Arial,
+    sans-serif;
 }
-
-.uk-link-toggle:focus .uk-link,
-.uk-link-toggle:hover .uk-link,
-.uk-link:hover,
-a:hover {
-  color: #6a7187;
-}
-
-.uk-h1,
-.uk-h2,
-.uk-h3,
-.uk-h4,
-.uk-h5,
-.uk-h6,
-.uk-heading-2xlarge,
-.uk-heading-large,
-.uk-heading-medium,
-.uk-heading-small,
-.uk-heading-xlarge,
 h1,
 h2,
-h3,
-h4,
-h5,
-h6 {
-  color: #6a7187;
+h3 {
+  font-family: Instrument, Georgia, serif;
+  font-weight: 400;
+  line-height: 1.08;
+  margin: 0;
+}
+h1 {
+  font-size: clamp(56px, 7vw, 100px);
+  letter-spacing: -2px;
+}
+h2 {
+  font-size: clamp(40px, 5vw, 65px);
+}
+h3 {
+  font-size: 31px;
+}
+p {
+  max-width: 650px;
+}
+button,
+a,
+input,
+textarea {
+  font: inherit;
+}
+button,
+a {
+  cursor: pointer;
+}
+a {
+  color: inherit;
+}
+button,
+.button {
+  border: 1px solid #334436;
+  background: #334436;
+  color: #f7f3ee;
+  border-radius: 40px;
+  padding: 12px 24px;
+  text-decoration: none;
+  display: inline-block;
+}
+button:hover,
+.button:hover {
+  background: #506248;
+  color: white;
+}
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 6%;
+  border-bottom: 1px solid #33443622;
+  gap: 20px;
+}
+header img {
+  width: 195px;
+  mix-blend-mode: multiply;
+}
+nav {
+  display: flex;
+  gap: 28px;
+  font-size: 14px;
+}
+nav a {
+  text-decoration: none;
+}
+.edit {
+  padding: 8px 18px;
+  background: transparent;
+  color: #334436;
+  font-size: 13px;
+}
+section {
+  padding: 90px 8%;
+  scroll-margin-top: 20px;
+}
+.eyebrow {
+  font-family: 'TM Sans', Arial, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 11px;
+  font-weight: bold;
+  margin-bottom: 24px;
+}
+.hero {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 7%;
+  align-items: center;
+  padding-top: 68px;
+}
+.hero p {
+  max-width: 480px;
+  margin: 28px 0;
+}
+.hero-art {
+  background: #cbcbb4;
+  border-radius: 48% 48% 3px 3px;
+  min-height: 485px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero-art img {
+  width: 65%;
+  mix-blend-mode: multiply;
+  position: relative;
+  z-index: 1;
+}
+.tiny {
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+.ribbon {
+  background: #e6bfb7;
+  text-align: center;
+  padding: 21px;
+  font-size: 13px;
+  letter-spacing: 2px;
+}
+.intro {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12%;
+  background: #fffdf9;
+}
+.intro p {
+  margin-top: 0;
+}
+.section-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 40px;
+  margin-bottom: 40px;
+}
+.section-top p {
+  max-width: 360px;
+  margin-bottom: 0;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+.card {
+  padding: 30px;
+  border-top: 1px solid #33443655;
+  position: relative;
+}
+.card .number {
+  font-size: 12px;
+  margin-bottom: 28px;
+}
+.card p {
+  font-size: 15px;
+}
+.staff {
+  background: #cbcbb4;
+}
+.staff .card {
+  border: 0;
+  background: #f7f3ee;
+  padding: 0 0 25px;
+}
+.portrait {
+  height: 280px;
+  background: #e6bfb7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.portrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.staff h3,
+.staff p,
+.staff .actions {
+  margin: 22px 24px 0;
+}
+.staff p {
+  font-size: 14px;
+  margin-top: 9px;
+}
+.portrait span {
+  font:
+    100px Instrument,
+    Georgia;
+}
+.insurance {
+  background: #c0ccdd;
+}
+.pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 32px;
+}
+.pill {
+  border: 1px solid #33443666;
+  padding: 20px 32px;
+  border-radius: 4px;
+  min-width: 160px;
+  text-align: center;
+}
+.steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  margin-top: 45px;
+}
+.contact {
+  background: #334436;
+  color: #f7f3ee;
+  text-align: center;
+}
+.contact p {
+  margin: 25px auto;
+}
+.contact .button {
+  background: #e6bfb7;
+  color: #334436;
+  border: 0;
+}
+footer {
+  padding: 35px 6%;
+  display: flex;
+  justify-content: space-between;
+  gap: 25px;
+  font-size: 12px;
+}
+.actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 18px;
+}
+.actions button,
+.add {
+  font-size: 12px;
+  padding: 6px 13px;
+}
+.actions button:last-child {
+  background: transparent;
+  color: #334436;
+}
+.admin {
+  display: none;
+}
+.editing .admin {
+  display: flex;
+}
+.empty {
+  border: 1px dashed #33443655;
+  padding: 25px;
+  font-size: 14px;
+}
+.adminbar {
+  background: #334436;
+  color: white;
+  padding: 12px 6%;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  font-size: 13px;
+}
+.adminbar button {
+  color: #334436;
+  background: #f7f3ee;
+  padding: 6px 16px;
+}
+dialog {
+  border: 0;
+  border-radius: 15px;
+  width: min(560px, 92vw);
+  background: #f7f3ee;
+  color: #334436;
+  padding: 30px;
+}
+dialog::backdrop {
+  background: #17231c88;
+}
+label {
+  display: block;
+  margin: 16px 0;
+  font-size: 13px;
+}
+input,
+textarea {
+  display: block;
+  width: 100%;
+  border: 1px solid #33443655;
+  background: white;
+  padding: 11px;
+  color: #334436;
+  border-radius: 4px;
+}
+textarea {
+  min-height: 100px;
+}
+.dialog-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 22px;
+}
+.status {
+  font-size: 13px;
+  min-height: 24px;
+}
+body:has(dialog[open]) {
+  overflow: hidden;
+}
+@media (max-width: 760px) {
+  header {
+    flex-wrap: wrap;
+  }
+  header img {
+    width: 150px;
+  }
+  nav {
+    order: 3;
+    width: 100%;
+    justify-content: space-between;
+    gap: 9px;
+    font-size: 12px;
+  }
+  .hero,
+  .intro {
+    grid-template-columns: 1fr;
+  }
+  .hero-art {
+    min-height: 320px;
+    margin-top: 25px;
+  }
+  .hero-art img {
+    width: 50%;
+  }
+  section {
+    padding: 60px 6%;
+  }
+  .grid,
+  .steps {
+    grid-template-columns: 1fr;
+  }
+  .section-top {
+    display: block;
+  }
+  .section-top p {
+    margin-top: 20px;
+  }
+  .hero {
+    padding-top: 45px;
+  }
+  .intro {
+    gap: 30px;
+  }
+  .ribbon {
+    font-size: 10px;
+    letter-spacing: 1px;
+  }
+  footer {
+    flex-direction: column;
+  }
+  .adminbar {
+    flex-wrap: wrap;
+  }
+  .pill {
+    min-width: 130px;
+    padding: 15px;
+  }
+  .portrait {
+    height: 340px;
+  }
 }
 
-.uk-card-default .uk-card-title,
-.uk-card-default {
-  color: #6a7187;
+[hidden] {
+  display: none !important;
 }
-
-.uk-text-lead {
-  color: #6a7187;
+.editor-preview {
+  width: 330px;
+  max-width: 100%;
+  height: auto;
+  aspect-ratio: 330/280;
+  margin: 16px auto;
+  position: relative;
 }
-
-.uk-offcanvas-bar .uk-nav-default > li > a,
-.uk-offcanvas-bar[_ngcontent-mvw-c16] a[_ngcontent-mvw-c16] {
-  color: #6a7187;
+.editor-preview img {
+  position: absolute;
+  inset: 0;
 }
-
-.uk-card-primary.uk-card-body .uk-close,
-.uk-card-primary > :not([class*='uk-card-media']) .uk-close,
-.uk-card-secondary.uk-card-body .uk-close,
-.uk-card-secondary > :not([class*='uk-card-media']) .uk-close,
-.uk-light .uk-close,
-.uk-offcanvas-bar .uk-close,
-.uk-overlay-primary .uk-close,
-.uk-section-primary:not(.uk-preserve-color) .uk-close,
-.uk-section-secondary:not(.uk-preserve-color) .uk-close,
-.uk-tile-primary:not(.uk-preserve-color) .uk-close,
-.uk-tile-secondary:not(.uk-preserve-color) .uk-close {
-  color: #6a7187;
-}
-
-.uk-navbar-nav > li > a,
-.uk-navbar-nav > li:hover > a,
-.uk-navbar-nav > li > a.uk-open,
-.uk-navbar-nav > li > a:focus {
-  color: #6a7187;
-}
-
-.uk-padding-medium {
-  padding: 42px;
+input[type='range'] {
+  padding: 0;
 }

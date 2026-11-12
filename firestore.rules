@@ -1,0 +1,25 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isOwner() {
+      return request.auth != null
+        && request.auth.token.websiteEditor == true
+        && request.auth.token.email_verified == true
+        && request.auth.token.firebase.sign_in_provider == 'google.com';
+    }
+    match /website/content {
+      allow read: if true;
+      allow create, update: if isOwner()
+        && request.resource.data.keys().hasOnly(['heroText', 'aboutText', 'insuranceText', 'contactText', 'contactEmail', 'staff', 'services', 'insurance'])
+        && request.resource.data.heroText is string
+        && request.resource.data.aboutText is string
+        && request.resource.data.insuranceText is string
+        && request.resource.data.contactText is string
+        && request.resource.data.contactEmail is string
+        && request.resource.data.staff is list
+        && request.resource.data.services is list
+        && request.resource.data.insurance is list;
+      allow delete: if false;
+    }
+  }
+}

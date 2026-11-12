@@ -1,3 +1,4 @@
+import { FormsModule } from '@angular/forms'
 import { BrowserModule } from '@angular/platform-browser'
 import { NgModule } from '@angular/core'
 
@@ -9,7 +10,7 @@ import { providePerformance, getPerformance } from '@angular/fire/performance'
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, AppRoutingModule],
+  imports: [BrowserModule, FormsModule, AppRoutingModule],
   providers: [
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     providePerformance(() => getPerformance()),
