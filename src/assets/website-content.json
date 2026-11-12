@@ -1,0 +1,121 @@
+{
+  "heroText": "Individualized ABA therapy that helps children build confidence, develop meaningful skills, and thrive with families at the heart of it all.",
+  "aboutText": "Maven in Behavior is a BCBA owned and founded ABA therapy company in South Miami. We create individualized treatment plans, collaborate closely with families, and invest in ongoing clinical excellence.",
+  "insuranceText": "We work with Aetna, Florida Blue, and TRICARE East. Contact our team to confirm your specific plan, benefits, and authorization requirements.",
+  "contactText": "Contact our South Miami team at (305) 586-2953 or info@maveninbehavior.com. Visit us at 7000 SW 62nd Ave, Suite 407, South Miami, FL 33143.",
+  "contactEmail": "info@maveninbehavior.com",
+  "staff": [
+    {
+      "id": "public-profile-0",
+      "name": "Alana",
+      "role": "Usategui Guilarte, M.S.,BCBA, Owner and Founder",
+      "description": "Alana is a Board Certified Behavior Analyst and the founder and owner of Maven in Behavior Inc. For the last 15 years Alana has been working with children on the Autism Spectrum. In 2015, Alana received her Masters Degree in Applied Behavior Analysis from Nova South Eastern University. In 2017 Alana became a Board Certified Behavior Analyst and opened the doors of Maven in Behavior in December 2021. Prior to her work as a BCBA, Alana was a special education teacher in New York City, as well as in Miami. Alana\u2019s interest in this field began when her younger twin brothers were diagnosed with Autism and she saw first-hand the success of a well implemented ABA program. Alana also received a double bachelors degree in Psychology and Special Education from New York University. Alana\u2019s personal background as well as her experience in a variety of special education settings gives her a unique approach in not only how she personally tailors programs for her clients, but as well as how she relates to the staff she works with and the families she serves.",
+      "photo": "assets/img/alana.jpg",
+      "photoX": 50,
+      "photoY": 50
+    },
+    {
+      "id": "public-profile-1",
+      "name": "Christina",
+      "role": "Rodriguez, M.S.,BCBA, Clinical Director",
+      "description": "Christina is a Board Certified Behavior Analyst since 2021 and has been working in the field since 2007. Before becoming a BCBA, Christina was a special education teacher for over ten years and as an autism specialist at the University of Miami. Christina\u2019s vast experience in both education and behavior analysis help her to provide quality information to families and best practices to clients. Christina is the owner and founder of OJM behavioral services. Maven in Behavior and OJM will be working collaboratively to provide behavioral services and educational supports that will include: IEP support, classroom observations,and trainings.",
+      "photo": "assets/img/christina.jpg",
+      "photoX": 50,
+      "photoY": 50
+    },
+    {
+      "id": "public-profile-2",
+      "name": "Paola",
+      "role": "Guareschi, M.S.,BCBA",
+      "description": "Paola is a dedicated professional in the field of Applied Behavior Analysis (ABA), with a robust academic background and hands-on experience. Originally from Venezuela, Paola earned her Master\u2019s degree in ABA from the University of Miami. Since entering the field in 2021, she has been committed to applying her expertise to improve the lives of those she serves. Her work is driven by a passion for behavioral science and a deep-seated desire to make a positive impact in her community.",
+      "photo": "assets/img/paola.jpg",
+      "photoX": 50,
+      "photoY": 50
+    },
+    {
+      "id": "public-profile-3",
+      "name": "Lya",
+      "role": "Lauture, RBT",
+      "description": "Lya is an RBT here at Maven in Behavior. She is continuing her education to obtain her master\u2019s in applied behavior analysis to gain her BCBA certification. Her enthusiasm for watching children learn and thrive drives her commitment to providing compassionate and effective support in every session.",
+      "photo": "assets/img/lya.jpg",
+      "photoX": 50,
+      "photoY": 50
+    }
+  ],
+  "services": [
+    {
+      "id": "0",
+      "name": "1:1 ABA therapy",
+      "role": "",
+      "description": "Applied Behavior Analysis (ABA) is a scientific approach to understanding behavior. Maven in Behavior\u2019s individualized therapy programs incorporate verbal behavior and natural environment teaching to target skills such as such as communication, daily living skills, social skills, and work on decreasing problem behaviors.",
+      "photo": ""
+    },
+    {
+      "id": "1",
+      "name": "Parent training & consultations",
+      "role": "",
+      "description": "Trainings are always provided alongside with your child\u2019s individualized intervention plan. Maven in Behavior provides trainings and consultations aimed to help parents better understand their child\u2019s programming and successfully generalize acquired skills to their child\u2019s day to day life.",
+      "photo": ""
+    },
+    {
+      "id": "2",
+      "name": "School consultations",
+      "role": "",
+      "description": "School consultations include teacher and staff trainings as it relates to Applied Behavior Analysis. Maven in Behavior also offers classroom behavior supports to help improve classroom management strategies.",
+      "photo": ""
+    },
+    {
+      "id": "3",
+      "name": "Potty training",
+      "role": "",
+      "description": "Potty training is a necessary life skill and critical for independent living. Maven in Behavior uses an ABA based and individualized protocol to teach the skills necessary to successfully use a bathroom independently.",
+      "photo": ""
+    },
+    {
+      "id": "4",
+      "name": "Picky eating & food refusal",
+      "role": "",
+      "description": "Picky eating and food refusal are commonly seen amongst children today. Maven in Behavior uses a behavioral approach to target individualized goals such as decreasing food refusal behaviors and increasing variety in diet. To intervene successfully, it is important that all medical causes for food refusal or evaluated prior to treatment.\n\n",
+      "photo": ""
+    },
+    {
+      "id": "df45d1cd-c178-4fea-b93f-5511f71ef192",
+      "name": "Launchpad",
+      "role": "",
+      "description": "The Launchpad is a specialized school readiness program founded by Maven in Behavior. The Launchpad is a comprehensive ABA based school readiness program for learners ages 3-5. This program runs through the school year and also offers a summer intensive program.\n\n",
+      "photo": ""
+    }
+  ],
+  "insurance": [
+    {
+      "id": "0",
+      "name": "Aetna"
+    },
+    {
+      "id": "1",
+      "name": "Florida Blue"
+    },
+    {
+      "id": "2",
+      "name": "TRICARE East"
+    },
+    {
+      "id": "5141ea88-f9c2-4170-bcec-37927523d08e",
+      "name": "Cigna",
+      "role": "",
+      "description": "",
+      "photo": "",
+      "photoX": 50,
+      "photoY": 50
+    },
+    {
+      "id": "2a2d919f-7420-4072-a9ab-8802dc21e3eb",
+      "name": "Step Up for Unique Abilities",
+      "role": "",
+      "description": "",
+      "photo": "",
+      "photoX": 50,
+      "photoY": 50
+    }
+  ]
+}
