@@ -79,19 +79,33 @@ button:hover,
   color: white;
 }
 header {
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
   align-items: center;
-  justify-content: space-between;
   padding: 18px 6%;
   border-bottom: 1px solid #33443622;
   gap: 20px;
+}
+.brand-logo {
+  grid-column: 2;
+  grid-row: 1;
+  justify-self: center;
+}
+header .edit {
+  grid-column: 3;
+  grid-row: 1;
+  justify-self: end;
 }
 header img {
   width: 195px;
   mix-blend-mode: multiply;
 }
 nav {
+  grid-column: 1 / -1;
+  grid-row: 2;
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 28px;
   font-size: 14px;
 }
@@ -148,6 +162,10 @@ section {
   letter-spacing: 1px;
 }
 .ribbon {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px 32px;
   background: #e6bfb7;
   text-align: center;
   padding: 21px;
@@ -350,15 +368,22 @@ body:has(dialog[open]) {
 }
 @media (max-width: 760px) {
   header {
-    flex-wrap: wrap;
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .brand-logo {
+    grid-column: 1;
+  }
+  header .edit {
+    grid-column: 1;
+    grid-row: 3;
+    justify-self: center;
   }
   header img {
     width: 150px;
   }
   nav {
-    order: 3;
     width: 100%;
-    justify-content: space-between;
+    justify-content: center;
     gap: 9px;
     font-size: 12px;
   }

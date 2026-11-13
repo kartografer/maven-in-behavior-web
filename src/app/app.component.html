@@ -4,7 +4,7 @@
   ><span role="status">{{ status }}</span>
 </div>
 <header>
-  <a href="#" aria-label="Maven in Behavior home"
+  <a href="#" class="brand-logo" aria-label="Maven in Behavior home"
     ><img
       src="assets/brand/maven-logo.png"
       alt="Maven in Behavior — ABA therapy in Miami, Florida"
@@ -20,16 +20,16 @@
     [hidden]="editing || signingIn"
     [disabled]="signingIn"
   >
-    Edit website ↗
+    Edit website
   </button>
 </header>
 <main>
   <section class="hero">
     <div>
-      <div class="eyebrow">South Miami, Florida · Since 2021</div>
+      <div class="eyebrow">South Miami, Florida · EST.2021</div>
       <h1>A place to grow.<br />A team who cares.</h1>
       <p id="heroText">{{ content.heroText }}</p>
-      <a href="#contact" class="button">Let’s take the next step ↗</a>
+      <a href="#contact" class="button">Click here to learn more</a>
       <div class="actions" *ngIf="isCmsRoute && editing">
         <button (click)="editText('heroText')">Edit introduction</button>
       </div>
@@ -43,8 +43,9 @@
     </div>
   </section>
   <div class="ribbon">
-    INDIVIDUALIZED CARE &nbsp; ✳ &nbsp; FAMILY PARTNERSHIP &nbsp; ✳ &nbsp;
-    MEANINGFUL PROGRESS
+    <span>INDIVIDUALIZED CARE</span>
+    <span>FAMILY PARTNERSHIP</span>
+    <span>MEANINGFUL PROGRESS</span>
   </div>
   <section class="intro" id="about">
     <div>
@@ -66,7 +67,7 @@
   <section id="services">
     <div class="section-top">
       <div>
-        <h2>Care that meets<br />your family where you are.</h2>
+        <h2>Our Services</h2>
       </div>
       <p>
         Individual strengths, real-life goals, and a plan built around your
@@ -129,7 +130,7 @@
   </section>
   <section class="insurance" id="insurance">
     <div class="eyebrow">Making care accessible</div>
-    <h2>Let’s navigate insurance, together.</h2>
+    <h2>More ways to access the care your child deserves</h2>
     <p id="insuranceText">{{ content.insuranceText }}</p>
     <div class="actions" *ngIf="isCmsRoute && editing">
       <button (click)="editText('insuranceText')">
@@ -158,7 +159,7 @@
       id="contactLink"
       [hidden]="!content.contactEmail"
       [href]="'mailto:' + content.contactEmail"
-      >Get in touch ↗</a
+      >Get in touch</a
     >
     <div
       class="actions"
