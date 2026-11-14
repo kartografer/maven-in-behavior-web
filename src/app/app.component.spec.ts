@@ -133,12 +133,19 @@ describe('Maven website editor', () => {
     expect(website.signIn).not.toHaveBeenCalled()
     expect(fixture.componentInstance.editing).toBeFalse()
   })
-  it('does not unlock editing when sign-in is denied', async () => {
-    const app = (await setup()).componentInstance
+  it('does not unlock editing when sign-in is denied, and says why in the header', async () => {
+    const fixture = await setup()
+    const app = fixture.componentInstance
+    spyOn(console, 'error')
     website.signIn.and.rejectWith(new Error('Wrong account'))
     await app.startEditing()
+    fixture.detectChanges()
     expect(app.editing).toBeFalse()
     expect(app.error).toBe('Wrong account')
+    const alert = fixture.nativeElement.querySelector('header [role="alert"]')
+    expect(alert?.textContent.trim()).toBe('Wrong account')
+    expect(console.error).toHaveBeenCalled()
+    expect(fixture.nativeElement.querySelector('.adminbar')).toBeNull()
   })
   it('saves crop positions for one profile without replacing other sections', async () => {
     const app = (await setup()).componentInstance

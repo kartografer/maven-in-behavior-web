@@ -24,6 +24,12 @@
     >
       Edit website
     </button>
+    @if (signingIn) {
+      <span class="cms-message" role="status">Signing in…</span>
+    }
+    @if (error) {
+      <p class="cms-message cms-error" role="alert">{{ error }}</p>
+    }
   }
 </header>
 <main>
@@ -224,7 +230,9 @@
     >© <span id="year">{{ year }}</span> Maven in Behavior</span
   >
 </footer>
-<p class="status" role="status" style="text-align: center">{{ error }}</p>
+@if (!isCmsRoute) {
+  <p class="status" role="status" style="text-align: center">{{ error }}</p>
+}
 <dialog #editor (close)="clearPreview()">
   <form (ngSubmit)="save()">
     <h3>{{ textKey ? 'Edit website text' : 'Edit ' + section }}</h3>
