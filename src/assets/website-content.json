@@ -30,7 +30,7 @@
       "description": "Paola is a dedicated professional in the field of Applied Behavior Analysis (ABA), with a robust academic background and hands-on experience. Originally from Venezuela, Paola earned her Master\u2019s degree in ABA from the University of Miami. Since entering the field in 2021, she has been committed to applying her expertise to improve the lives of those she serves. Her work is driven by a passion for behavioral science and a deep-seated desire to make a positive impact in her community.",
       "photo": "assets/img/paola.jpg",
       "photoX": 50,
-      "photoY": 50
+      "photoY": 5
     },
     {
       "id": "public-profile-3",
@@ -39,7 +39,7 @@
       "description": "Lya is an RBT here at Maven in Behavior. She is continuing her education to obtain her master\u2019s in applied behavior analysis to gain her BCBA certification. Her enthusiasm for watching children learn and thrive drives her commitment to providing compassionate and effective support in every session.",
       "photo": "assets/img/lya.jpg",
       "photoX": 50,
-      "photoY": 50
+      "photoY": 8
     }
   ],
   "services": [
