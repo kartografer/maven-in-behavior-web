@@ -1,9 +1,67 @@
 # Plan: Angular Upgrade
 
 - **Reviewed:** 2026-11-14
-- **Status:** Awaiting review. Nothing has been changed yet.
-- **Proposed branch:** `chore/angular-21-upgrade` (from `main`)
+- **Status:** Steps 0–5 and Step 6.1 implemented on `chore/angular-21-upgrade`, PR opened. See **Progress** below.
+- **Branch:** `chore/angular-21-upgrade` (from `main`)
 - **Related:** Phases 2–4 of [`dependabot-cleanup.md`](dependabot-cleanup.md). This plan replaces them.
+
+## Progress (2026-11-14)
+
+**Decisions by reviewer:**
+
+- Go straight to 21.
+- Include Firebase 12 in the same PR.
+- Include the esbuild builder migration.
+- The grpc/protobufjs alert dismissal was not decided, so it was left as is.
+
+| Step                                 | Commit                                                  | Result                               |
+| ------------------------------------ | ------------------------------------------------------- | ------------------------------------ |
+| Plan                                 | `docs: add Angular 21 upgrade plan`                     | ✅                                   |
+| 1. Remove `angular-cli-ghpages`      | `chore: remove unused angular-cli-ghpages`              | ✅ 30 packages removed               |
+| 2. Angular + CLI → 21.2.x            | `chore: upgrade Angular framework and CLI to 21`        | ✅ See notes below                   |
+| 3. @angular/fire 21 + firebase 12.19 | `chore: upgrade @angular/fire to 21 and firebase to 12` | ✅ Needed `skipLibCheck` (see notes) |
+| 4. angular-eslint 21.4               | `chore: upgrade angular-eslint to 21`                   | ✅                                   |
+| 6.1. esbuild `application` builder   | `build: switch to the esbuild application builder`      | ✅ Output kept in `dist/web`         |
+| Extra                                | `chore(deps): apply non-breaking npm audit fixes`       | ✅ body-parser, brace-expansion, qs  |
+
+**Differences from the plan:**
+
+- **The control-flow migration ran automatically** in `ng update` 21. All 26 `*ngIf`/`*ngFor` are now `@if`/`@for`, so Step 6.2 is done. The migration used `track item`; I changed it to `track item.id` so saves don't rebuild every card.
+- **TestBed needed `provideZoneChangeDetection()`** to match the app's bootstrap. Without it, one test hit NG0100 under Angular 21's new zone scheduler defaults.
+- **Firestore 12.19 type definitions reference the `Temporal` API**, which TypeScript 5.9 lacks, and only for methods the app doesn't use. Fixed by enabling `"skipLibCheck": true`, the Angular CLI default for new projects.
+- **The builder migration moved output to `dist/web/browser`.** I set `outputPath.browser: ""` to keep `dist/web`, so `firebase.json` and the deploy workflow need no change. Karma `polyfills` had to be an array, and the old `@angular-devkit/build-angular` Karma framework entry was removed.
+- **`@modelcontextprotocol/sdk`** is now 1.32.1 via CLI 21, so no override was needed.
+- **Run migrations with a pinned version:** `ng update @angular/cli --name …` without a version fetches the latest CLI (22), which needs Node ≥ 24.15. Use `@angular/cli@21`.
+
+**Results:**
+
+| Measure                              | Before (`main`)          | After                                      |
+| ------------------------------------ | ------------------------ | ------------------------------------------ |
+| `npm ci` packages                    | 1,185                    | 825                                        |
+| Dev build                            | ~9.6s                    | ~1.6s                                      |
+| Prod build                           | ~9.9s                    | ~3.7s                                      |
+| Prod initial bundle (raw / transfer) | 734 kB / 196 kB          | 940 kB / 248 kB (Angular 21 + Firebase 12) |
+| `npm audit`                          | 59 (1 critical, 26 high) | 38 (0 critical, 15 high)                   |
+
+**Validation:**
+
+- Clean `npm ci`, both builds, tests (10/10, repeated), and lint all pass.
+- Dev and production smoke tests: all sections, team cards and "Read more" work; the edit button shows only on `/cms`.
+- No Angular errors in the console. The only 404 is `favicon.ico`, which has never existed in `src/` (an existing issue).
+
+**Still to do:**
+
+- [ ] Manual CMS smoke test with the editor's Google account: sign in, edit, photo upload, save. This can't be automated here.
+- [ ] Check the deployed preview after merge.
+- [ ] Close the superseded Dependabot PRs #118, #114, #104, #103 and #94 after merge.
+- [ ] Remaining `npm audit` findings:
+  - `@grpc/grpc-js`: not reachable in the browser build; dismissal decision pending.
+  - `basic-ftp`: needs 6.2.4 (via puppeteer → proxy-agent).
+  - `extract-zip`, `zod`: need puppeteer 25 (major).
+  - `glob`, `minimatch`: npm's suggested fixes are downgrades; wait for upstream.
+- [ ] Later: Angular 22, once `@angular/fire` 22 is stable (TypeScript 6, Node ≥ 24.15).
+- [ ] Optional: Karma → Vitest.
+- [ ] Optional: add a `favicon.ico`, or remove it from `angular.json` assets.
 
 ## TL;DR
 
