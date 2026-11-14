@@ -172,8 +172,25 @@ export class AppComponent implements OnInit {
       )
     if (input) input.value = ''
   }
-  photoPosition(item: WebsiteItem) {
-    return `${this.position(item.photoX)}% ${this.position(item.photoY)}%`
+  /**
+   * photoX/photoY mark the focal point (e.g. the face) as a percentage of the
+   * photo. styles.scss keeps that point centered in the portrait box, clamped
+   * to the photo's edges, so the crop adapts to every box size.
+   */
+  photoFocus(item: WebsiteItem) {
+    return {
+      '--focus-x': this.position(item.photoX) / 100,
+      '--focus-y': this.position(item.photoY) / 100,
+    }
+  }
+  /** Records the photo's height/width ratio for the focal-point crop math. */
+  photoLoaded(event: Event) {
+    const img = event.target as HTMLImageElement
+    if (img.naturalWidth)
+      img.style.setProperty(
+        '--photo-ratio',
+        String(img.naturalHeight / img.naturalWidth)
+      )
   }
   private position(value?: number) {
     return value == null || !Number.isFinite(Number(value))
