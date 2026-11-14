@@ -2,6 +2,7 @@ import { Router } from '@angular/router'
 import { RouterTestingModule } from '@angular/router/testing'
 import { routes } from './app-routing.module'
 import { TestBed } from '@angular/core/testing'
+import { provideZoneChangeDetection } from '@angular/core'
 import { FormsModule } from '@angular/forms'
 import { AppComponent } from './app.component'
 import {
@@ -52,7 +53,10 @@ describe('Maven website editor', () => {
     await TestBed.configureTestingModule({
       imports: [FormsModule, RouterTestingModule.withRoutes(routes)],
       declarations: [AppComponent],
-      providers: [{ provide: WebsiteContentService, useValue: website }],
+      providers: [
+        provideZoneChangeDetection(),
+        { provide: WebsiteContentService, useValue: website },
+      ],
     }).compileComponents()
   })
   async function setup(cms = true) {
