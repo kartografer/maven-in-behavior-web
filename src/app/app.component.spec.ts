@@ -129,14 +129,42 @@ describe('Maven website editor', () => {
     expect(app.content.staff.map((item) => item.id)).toEqual(['two'])
     expect(app.content.insurance.length).toBe(1)
   })
-  it('centers and clamps photo positions', async () => {
+  it('centers and clamps photo focal points', async () => {
     const app = (await setup()).componentInstance
     app.draft = { id: 'one', name: 'Test', photoX: 10, photoY: 90 }
     app.centerPhoto()
-    expect(app.photoPosition(app.draft)).toBe('50% 50%')
+    expect(app.photoFocus(app.draft)).toEqual({
+      '--focus-x': 0.5,
+      '--focus-y': 0.5,
+    })
     expect(
-      app.photoPosition({ id: 'one', name: 'Test', photoX: -30, photoY: 120 })
-    ).toBe('0% 100%')
+      app.photoFocus({ id: 'one', name: 'Test', photoX: -30, photoY: 120 })
+    ).toEqual({ '--focus-x': 0, '--focus-y': 1 })
+  })
+  it('keeps the focal point visible when the portrait box changes shape', () => {
+    const portrait = document.createElement('div')
+    portrait.className = 'portrait'
+    const img = document.createElement('img')
+    portrait.append(img)
+    document.body.append(portrait)
+    // A tall photo (ratio 1.4) with the face near the top.
+    img.style.setProperty('--photo-ratio', '1.4')
+    img.style.setProperty('--focus-x', '0.5')
+    img.style.setProperty('--focus-y', '0.2')
+    portrait.style.height = '280px'
+    // Narrow boxes clamp to the photo's top edge; the wide box (where the old
+    // 50% crop cut off the head) centers the face exactly.
+    for (const width of [210, 390, 670]) {
+      portrait.style.width = `${width}px`
+      const coverH = width * 1.4
+      const offsetY = parseFloat(
+        getComputedStyle(img).objectPosition.split(' ')[1]
+      )
+      const expected = Math.min(0, Math.max(280 - coverH, 140 - 0.2 * coverH))
+      expect(offsetY).toBeCloseTo(expected, 0)
+    }
+    expect(140 - 0.2 * 670 * 1.4).toBeLessThan(0) // sanity: 670 is unclamped
+    portrait.remove()
   })
   it('adds a service and removes a photo independently', async () => {
     const app = (await setup()).componentInstance

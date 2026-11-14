@@ -107,7 +107,8 @@
             *ngIf="item.photo; else initials"
             [src]="item.photo"
             [alt]="item.name"
-            [style.object-position]="photoPosition(item)"
+            [style]="photoFocus(item)"
+            (load)="photoLoaded($event)"
           /><ng-template #initials
             ><span>{{ item.name.charAt(0) }}</span></ng-template
           >
@@ -230,18 +231,19 @@
           <img
             [src]="preview || draft.photo"
             alt="Staff photo positioning preview"
-            [style.object-position]="photoPosition(draft)"
+            [style]="photoFocus(draft)"
+            (load)="photoLoaded($event)"
           />
         </div>
         <label
-          >Horizontal position<input
+          >Face position (horizontal)<input
             type="range"
             name="photoX"
             min="0"
             max="100"
             [(ngModel)]="draft.photoX" /></label
         ><label
-          >Vertical position<input
+          >Face position (vertical)<input
             type="range"
             name="photoY"
             min="0"
