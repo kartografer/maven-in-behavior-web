@@ -61,19 +61,38 @@ export class WebsiteContentService {
     const auth = getAuth(this.app)
     const provider = new GoogleAuthProvider()
     provider.setCustomParameters({ prompt: 'select_account' })
-    const result = await signInWithPopup(auth, provider)
-    const token = await result.user.getIdTokenResult(true)
-    if (!result.user.emailVerified || token.claims['websiteEditor'] !== true) {
-      const email = result.user.email || 'this Google account'
+    const { user } = await signInWithPopup(auth, provider)
+    const email = user.email || 'this Google account'
+    if (!user.emailVerified) {
       await signOut(auth)
       throw new Error(
-        result.user.emailVerified
-          ? `${email} is signed in but does not have editor access (the websiteEditor claim). Sign in with the authorized account, or ask the site administrator to grant access.`
-          : `${email} has not been verified by Google. Please use the authorized Google account.`
+        `${email} has not been verified by Google. Please use the authorized Google account.`
+      )
+    }
+    // Editors are listed in the Firestore `editors` collection (managed in the
+    // Firebase console). The older websiteEditor custom claim is still honored.
+    const token = await user.getIdTokenResult(true)
+    if (
+      token.claims['websiteEditor'] !== true &&
+      !(await this.isListedEditor(user.email))
+    ) {
+      await signOut(auth)
+      throw new Error(
+        `${email} is signed in but is not on the website editor list. Sign in with an authorized account, or ask the site administrator to add this email to the editors list.`
       )
     }
     // Verify backend availability before exposing editing controls.
     await getDoc(this.contentRef)
+  }
+  /** True when `editors/<lowercase email>` exists. Rules let users read only their own entry. */
+  private async isListedEditor(email: string | null): Promise<boolean> {
+    if (!email) return false
+    try {
+      const entry = doc(getFirestore(this.app), 'editors', email.toLowerCase())
+      return (await getDoc(entry)).exists()
+    } catch {
+      return false
+    }
   }
   async signOut(): Promise<void> {
     await signOut(getAuth(this.app))

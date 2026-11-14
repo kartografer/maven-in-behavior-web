@@ -1,11 +1,14 @@
 rules_version = '2';
 service firebase.storage {
   match /b/{bucket}/o {
+    // Same editors as firestore.rules: the Firestore `editors` list or the
+    // older websiteEditor claim.
     function isOwner() {
       return request.auth != null
-        && request.auth.token.websiteEditor == true
         && request.auth.token.email_verified == true
-        && request.auth.token.firebase.sign_in_provider == 'google.com';
+        && request.auth.token.firebase.sign_in_provider == 'google.com'
+        && (request.auth.token.get('websiteEditor', false) == true
+          || firestore.exists(/databases/(default)/documents/editors/$(request.auth.token.email.lower())));
     }
     match /staff-photos/{photo} {
       allow read: if true;

@@ -1,11 +1,23 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    function isOwner() {
+    function isGoogleUser() {
       return request.auth != null
-        && request.auth.token.websiteEditor == true
         && request.auth.token.email_verified == true
         && request.auth.token.firebase.sign_in_provider == 'google.com';
+    }
+    // Editors: a document in `editors` named by the lowercase Google email
+    // (added in the Firebase console), or the older websiteEditor claim.
+    function isOwner() {
+      return isGoogleUser()
+        && (request.auth.token.get('websiteEditor', false) == true
+          || exists(/databases/$(database)/documents/editors/$(request.auth.token.email.lower())));
+    }
+    // Each user may check only their own entry; the list is managed in the
+    // Firebase console, never from the website.
+    match /editors/{email} {
+      allow get: if isGoogleUser() && request.auth.token.email.lower() == email;
+      allow list, write: if false;
     }
     match /website/content {
       allow read: if true;
