@@ -102,6 +102,7 @@ export class AppComponent implements OnInit {
       if (published) this.content = published
       this.editing = this.isCmsRoute
     } catch (error) {
+      console.error('CMS sign-in failed:', error)
       this.error = this.message(error)
     } finally {
       this.signingIn = false

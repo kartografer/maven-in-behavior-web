@@ -100,6 +100,22 @@ header img {
   width: 195px;
   mix-blend-mode: multiply;
 }
+// Sign-in progress and errors on /cms, shown under the navigation so the
+// editor sees why editing did not start.
+.cms-message {
+  grid-column: 1 / -1;
+  grid-row: 3;
+  justify-self: center;
+  margin: 0;
+  max-width: 640px;
+  font-size: 14px;
+  text-align: center;
+}
+.cms-error {
+  padding: 10px 16px;
+  border-radius: 4px;
+  background: #e6bfb7;
+}
 nav {
   grid-column: 1 / -1;
   grid-row: 2;
@@ -475,6 +491,9 @@ body:has(dialog[open]) {
     grid-column: 1;
     grid-row: 3;
     justify-self: center;
+  }
+  .cms-message {
+    grid-row: 4;
   }
   header img {
     width: 150px;

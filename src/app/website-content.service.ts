@@ -64,9 +64,12 @@ export class WebsiteContentService {
     const result = await signInWithPopup(auth, provider)
     const token = await result.user.getIdTokenResult(true)
     if (!result.user.emailVerified || token.claims['websiteEditor'] !== true) {
+      const email = result.user.email || 'this Google account'
       await signOut(auth)
       throw new Error(
-        'Please use the Google account authorized to edit this website.'
+        result.user.emailVerified
+          ? `${email} is signed in but does not have editor access (the websiteEditor claim). Sign in with the authorized account, or ask the site administrator to grant access.`
+          : `${email} has not been verified by Google. Please use the authorized Google account.`
       )
     }
     // Verify backend availability before exposing editing controls.
