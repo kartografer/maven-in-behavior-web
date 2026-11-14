@@ -216,6 +216,16 @@ section {
   border: 0;
   background: #f7f3ee;
   padding: 0 0 25px;
+  display: flex;
+  flex-direction: column;
+}
+.staff .card > .portrait {
+  flex-shrink: 0;
+}
+// Reserve two lines for the role (Alana's "…Owner and Founder" wraps), so
+// biographies and "Read more" links line up across every card and row.
+.staff .card > .role {
+  min-height: 2lh;
 }
 // Staff photos are 618×864 portraits; the frame uses the same shape at every
 // width so they show uncropped. Other shapes fall back to the focal-point crop.
@@ -290,10 +300,13 @@ section {
   line-clamp: 7;
   overflow: hidden;
 }
+// Pinned to the card bottom, so every link in a row lines up with the one in
+// the tallest card (cards in a row share its height).
 .staff .read-more {
   display: block;
-  margin-top: 8px;
-  padding: 0;
+  align-self: flex-start;
+  margin-top: auto;
+  padding: 8px 0 0;
   border: 0;
   border-radius: 0;
   background: none;
