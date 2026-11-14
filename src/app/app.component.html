@@ -1,8 +1,10 @@
-<div *ngIf="isCmsRoute && editing" class="adminbar" style="display: flex">
-  <span>Owner editor · Changes save online individually</span
-  ><button (click)="finishEditing()">Finish editing</button
-  ><span role="status">{{ status }}</span>
-</div>
+@if (isCmsRoute && editing) {
+  <div class="adminbar" style="display: flex">
+    <span>Owner editor · Changes save online individually</span
+    ><button (click)="finishEditing()">Finish editing</button
+    ><span role="status">{{ status }}</span>
+  </div>
+}
 <header>
   <a href="#" class="brand-logo" aria-label="Maven in Behavior home"
     ><img
@@ -13,15 +15,16 @@
     <a href="#about">Our approach</a><a href="#services">Services</a
     ><a href="#team">Our team</a><a href="#insurance">Insurance</a>
   </nav>
-  <button
-    *ngIf="isCmsRoute"
-    class="edit"
-    (click)="startEditing()"
-    [hidden]="editing || signingIn"
-    [disabled]="signingIn"
-  >
-    Edit website
-  </button>
+  @if (isCmsRoute) {
+    <button
+      class="edit"
+      (click)="startEditing()"
+      [hidden]="editing || signingIn"
+      [disabled]="signingIn"
+    >
+      Edit website
+    </button>
+  }
 </header>
 <main>
   <section class="hero">
@@ -30,9 +33,11 @@
       <h1>A place to grow.<br />A team who cares.</h1>
       <p id="heroText">{{ content.heroText }}</p>
       <a href="#contact" class="button">Click here to learn more</a>
-      <div class="actions" *ngIf="isCmsRoute && editing">
-        <button (click)="editText('heroText')">Edit introduction</button>
-      </div>
+      @if (isCmsRoute && editing) {
+        <div class="actions">
+          <button (click)="editText('heroText')">Edit introduction</button>
+        </div>
+      }
       <p class="tiny">CHILD-CENTERED CARE. MEANINGFUL CONNECTION.</p>
     </div>
     <div class="hero-art">
@@ -59,9 +64,11 @@
         known. Together, we build confidence and meaningful skills for everyday
         life.
       </p>
-      <div class="actions" *ngIf="isCmsRoute && editing">
-        <button (click)="editText('aboutText')">Edit approach</button>
-      </div>
+      @if (isCmsRoute && editing) {
+        <div class="actions">
+          <button (click)="editText('aboutText')">Edit approach</button>
+        </div>
+      }
     </div>
   </section>
   <section id="services">
@@ -75,22 +82,27 @@
       </p>
     </div>
     <div id="services-list" class="grid">
-      <article
-        class="card"
-        *ngFor="let item of content.services; let i = index"
-      >
-        <div class="number">{{ i + 1 }} /</div>
-        <h3>{{ item.name }}</h3>
-        <p>{{ item.description }}</p>
-        <div class="actions" *ngIf="isCmsRoute && editing">
-          <button (click)="editItem('services', item)">Edit</button
-          ><button (click)="deleteItem('services', item)">Delete</button>
-        </div>
-      </article>
+      @for (item of content.services; track item.id; let i = $index) {
+        <article class="card">
+          <div class="number">{{ i + 1 }} /</div>
+          <h3>{{ item.name }}</h3>
+          <p>{{ item.description }}</p>
+          @if (isCmsRoute && editing) {
+            <div class="actions">
+              <button (click)="editItem('services', item)">Edit</button
+              ><button (click)="deleteItem('services', item)">Delete</button>
+            </div>
+          }
+        </article>
+      }
     </div>
-    <div class="actions" *ngIf="isCmsRoute && editing">
-      <button class="add" (click)="editItem('services')">+ Add service</button>
-    </div>
+    @if (isCmsRoute && editing) {
+      <div class="actions">
+        <button class="add" (click)="editItem('services')">
+          + Add service
+        </button>
+      </div>
+    }
   </section>
   <section class="staff" id="team">
     <div class="section-top">
@@ -101,72 +113,90 @@
       <p>Compassionate care begins with meaningful relationships.</p>
     </div>
     <div id="staff-list" class="grid">
-      <article class="card" *ngFor="let item of content.staff">
-        <div class="portrait">
-          <img
-            *ngIf="item.photo; else initials"
-            [src]="item.photo"
-            [alt]="item.name"
-            [style]="photoFocus(item)"
-            (load)="photoLoaded($event)"
-          /><ng-template #initials
-            ><span>{{ item.name.charAt(0) }}</span></ng-template
+      @for (item of content.staff; track item.id) {
+        <article class="card">
+          <div class="portrait">
+            @if (item.photo) {
+              <img
+                [src]="item.photo"
+                [alt]="item.name"
+                [style]="photoFocus(item)"
+                (load)="photoLoaded($event)"
+              />
+            } @else {
+              <span>{{ item.name.charAt(0) }}</span>
+            }
+          </div>
+          <h3>{{ item.name }}</h3>
+          <p class="role">{{ item.role }}</p>
+          <p
+            #bio
+            class="bio"
+            [id]="'bio-' + item.id"
+            [class.expanded]="expandedBios.has(item.id)"
           >
-        </div>
-        <h3>{{ item.name }}</h3>
-        <p class="role">{{ item.role }}</p>
-        <p
-          #bio
-          class="bio"
-          [id]="'bio-' + item.id"
-          [class.expanded]="expandedBios.has(item.id)"
-        >
-          {{ item.description }}
-        </p>
-        <button
-          type="button"
-          class="read-more"
-          *ngIf="expandedBios.has(item.id) || bioOverflows(bio)"
-          [attr.aria-expanded]="expandedBios.has(item.id)"
-          [attr.aria-controls]="'bio-' + item.id"
-          (click)="toggleBio(item)"
-        >
-          {{ expandedBios.has(item.id) ? 'Read less' : 'Read more' }}
+            {{ item.description }}
+          </p>
+          @if (expandedBios.has(item.id) || bioOverflows(bio)) {
+            <button
+              type="button"
+              class="read-more"
+              [attr.aria-expanded]="expandedBios.has(item.id)"
+              [attr.aria-controls]="'bio-' + item.id"
+              (click)="toggleBio(item)"
+            >
+              {{ expandedBios.has(item.id) ? 'Read less' : 'Read more' }}
+            </button>
+          }
+          @if (isCmsRoute && editing) {
+            <div class="actions">
+              <button (click)="editItem('staff', item)">Edit</button
+              ><button (click)="deleteItem('staff', item)">Delete</button>
+            </div>
+          }
+        </article>
+      }
+      @if (!content.staff.length) {
+        <p>Our team profiles are coming soon.</p>
+      }
+    </div>
+    @if (isCmsRoute && editing) {
+      <div class="actions">
+        <button class="add" (click)="editItem('staff')">
+          + Add staff member
         </button>
-        <div class="actions" *ngIf="isCmsRoute && editing">
-          <button (click)="editItem('staff', item)">Edit</button
-          ><button (click)="deleteItem('staff', item)">Delete</button>
-        </div>
-      </article>
-      <p *ngIf="!content.staff.length">Our team profiles are coming soon.</p>
-    </div>
-    <div class="actions" *ngIf="isCmsRoute && editing">
-      <button class="add" (click)="editItem('staff')">
-        + Add staff member
-      </button>
-    </div>
+      </div>
+    }
   </section>
   <section class="insurance" id="insurance">
     <div class="eyebrow">Making care accessible</div>
     <h2>More ways to access the care your child deserves</h2>
     <p id="insuranceText">{{ content.insuranceText }}</p>
-    <div class="actions" *ngIf="isCmsRoute && editing">
-      <button (click)="editText('insuranceText')">
-        Edit insurance introduction
-      </button>
-    </div>
+    @if (isCmsRoute && editing) {
+      <div class="actions">
+        <button (click)="editText('insuranceText')">
+          Edit insurance introduction
+        </button>
+      </div>
+    }
     <div id="insurance-list" class="pills">
-      <article class="pill" *ngFor="let item of content.insurance">
-        <span>{{ item.name }}</span>
-        <div class="actions" *ngIf="isCmsRoute && editing">
-          <button (click)="editItem('insurance', item)">Edit</button
-          ><button (click)="deleteItem('insurance', item)">Delete</button>
-        </div>
-      </article>
+      @for (item of content.insurance; track item.id) {
+        <article class="pill">
+          <span>{{ item.name }}</span>
+          @if (isCmsRoute && editing) {
+            <div class="actions">
+              <button (click)="editItem('insurance', item)">Edit</button
+              ><button (click)="deleteItem('insurance', item)">Delete</button>
+            </div>
+          }
+        </article>
+      }
     </div>
-    <div class="actions" *ngIf="isCmsRoute && editing">
-      <button (click)="editItem('insurance')">+ Add insurance</button>
-    </div>
+    @if (isCmsRoute && editing) {
+      <div class="actions">
+        <button (click)="editItem('insurance')">+ Add insurance</button>
+      </div>
+    }
   </section>
   <section class="contact" id="contact">
     <div class="eyebrow">You don’t have to figure it out alone</div>
@@ -179,14 +209,12 @@
       [href]="'mailto:' + content.contactEmail"
       >Get in touch</a
     >
-    <div
-      class="actions"
-      *ngIf="isCmsRoute && editing"
-      style="justify-content: center"
-    >
-      <button (click)="editText('contactText')">Edit contact message</button
-      ><button (click)="editText('contactEmail')">Set contact email</button>
-    </div>
+    @if (isCmsRoute && editing) {
+      <div class="actions" style="justify-content: center">
+        <button (click)="editText('contactText')">Edit contact message</button
+        ><button (click)="editText('contactEmail')">Set contact email</button>
+      </div>
+    }
   </section>
 </main>
 <footer>
@@ -200,41 +228,48 @@
 <dialog #editor (close)="clearPreview()">
   <form (ngSubmit)="save()">
     <h3>{{ textKey ? 'Edit website text' : 'Edit ' + section }}</h3>
-    <ng-container *ngIf="textKey; else itemFields"
-      ><label
-        >{{ textKey === 'contactEmail' ? 'Contact email' : 'Text'
-        }}<textarea
-          *ngIf="textKey !== 'contactEmail'"
-          name="text"
-          maxlength="10000"
-          [(ngModel)]="textValue"
-        ></textarea
-        ><input
-          *ngIf="textKey === 'contactEmail'"
-          name="email"
-          type="email"
-          [(ngModel)]="textValue" /></label></ng-container
-    ><ng-template #itemFields
-      ><label
+    @if (textKey) {
+      <label
+        >{{ textKey === 'contactEmail' ? 'Contact email' : 'Text' }}
+        @if (textKey !== 'contactEmail') {
+          <textarea
+            name="text"
+            maxlength="10000"
+            [(ngModel)]="textValue"
+          ></textarea>
+        }
+        @if (textKey === 'contactEmail') {
+          <input name="email" type="email" [(ngModel)]="textValue" />
+        }
+      </label>
+    } @else {
+      <label
         >Name<input
           name="name"
           required
           maxlength="150"
-          [(ngModel)]="draft.name" /></label
-      ><label *ngIf="section === 'staff'"
-        >Role / credentials<input
-          name="role"
-          maxlength="200"
-          [(ngModel)]="draft.role" /></label
-      ><label *ngIf="section !== 'insurance'"
-        >{{ section === 'staff' ? 'Biography' : 'Description'
-        }}<textarea
-          name="description"
-          maxlength="6000"
-          [(ngModel)]="draft.description"
-        ></textarea></label
-      ><ng-container *ngIf="section === 'staff'"
-        ><label
+          [(ngModel)]="draft.name"
+      /></label>
+      @if (section === 'staff') {
+        <label
+          >Role / credentials<input
+            name="role"
+            maxlength="200"
+            [(ngModel)]="draft.role"
+        /></label>
+      }
+      @if (section !== 'insurance') {
+        <label
+          >{{ section === 'staff' ? 'Biography' : 'Description'
+          }}<textarea
+            name="description"
+            maxlength="6000"
+            [(ngModel)]="draft.description"
+          ></textarea>
+        </label>
+      }
+      @if (section === 'staff') {
+        <label
           >Staff photo<input
             type="file"
             accept="image/jpeg,image/png,image/webp"
@@ -245,18 +280,19 @@
             below.</span
           ></label
         >
-        <div
-          class="portrait editor-preview"
-          *ngIf="preview || draft.photo"
-          [style.aspect-ratio]="previewRatio"
-        >
-          <img
-            [src]="preview || draft.photo"
-            alt="Staff photo positioning preview"
-            [style]="photoFocus(draft)"
-            (load)="photoLoaded($event)"
-          />
-        </div>
+        @if (preview || draft.photo) {
+          <div
+            class="portrait editor-preview"
+            [style.aspect-ratio]="previewRatio"
+          >
+            <img
+              [src]="preview || draft.photo"
+              alt="Staff photo positioning preview"
+              [style]="photoFocus(draft)"
+              (load)="photoLoaded($event)"
+            />
+          </div>
+        }
         <label
           >Face position (horizontal)<input
             type="range"
@@ -273,17 +309,13 @@
             [(ngModel)]="draft.photoY"
         /></label>
         <div class="actions">
-          <button type="button" (click)="centerPhoto()">Center photo</button
-          ><button
-            type="button"
-            (click)="removePhoto()"
-            *ngIf="preview || draft.photo"
-          >
-            Remove photo
-          </button>
-        </div></ng-container
-      ></ng-template
-    >
+          <button type="button" (click)="centerPhoto()">Center photo</button>
+          @if (preview || draft.photo) {
+            <button type="button" (click)="removePhoto()">Remove photo</button>
+          }
+        </div>
+      }
+    }
     <p class="status" role="status">{{ dialogStatus }}</p>
     <div class="dialog-buttons">
       <button type="submit" [disabled]="saving">
