@@ -228,11 +228,20 @@ section {
   overflow: hidden;
   container-type: size;
 }
-// Team cards are exactly as wide as their 232×324 photo, so the photo fills
-// the top of the card edge to edge.
+// Team cards are exactly as wide as their 310×433 photo, so the photo fills
+// the top of the card edge to edge. Up to 4 cards fit per row (the row may
+// extend into the section padding to do so), and every row, including a
+// partial last row, is centered on the page.
 .staff .grid {
-  grid-template-columns: repeat(auto-fill, 232px);
+  --team-width: min(4 * 310px + 3 * 22px, 100vw - 48px);
+  display: flex;
+  flex-wrap: wrap;
   justify-content: center;
+  width: var(--team-width);
+  margin-inline: calc((100% - var(--team-width)) / 2);
+}
+.staff .grid > .card {
+  flex: 0 0 310px;
 }
 .staff .portrait {
   width: 100%;
@@ -267,9 +276,41 @@ section {
 }
 .staff .card h3,
 .staff .card p,
-.staff .card .actions {
-  margin-left: 16px;
-  margin-right: 16px;
+.staff .card .actions,
+.staff .card .read-more {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+// Long biographies show a 7-line preview so cards stay a similar length;
+// "Read more" expands one card in place.
+.staff .bio:not(.expanded) {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 7;
+  line-clamp: 7;
+  overflow: hidden;
+}
+.staff .read-more {
+  display: block;
+  margin-top: 8px;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  color: #334436;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.staff .read-more:hover {
+  background: none;
+  color: #506248;
+}
+// Cards share a row height while collapsed; once a biography is expanded,
+// only that card grows instead of stretching its neighbors.
+.staff .grid:has(.bio.expanded) {
+  align-items: start;
 }
 .portrait span {
   font:
@@ -467,7 +508,11 @@ body:has(dialog[open]) {
 // Phones: one full-width card per row; the photo grows with the card.
 @media (max-width: 560px) {
   .staff .grid {
-    grid-template-columns: 1fr;
+    width: auto;
+    margin-inline: 0;
+  }
+  .staff .grid > .card {
+    flex-basis: 100%;
   }
 }
 

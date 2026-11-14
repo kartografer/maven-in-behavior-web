@@ -115,7 +115,24 @@
         </div>
         <h3>{{ item.name }}</h3>
         <p>{{ item.role }}</p>
-        <p>{{ item.description }}</p>
+        <p
+          #bio
+          class="bio"
+          [id]="'bio-' + item.id"
+          [class.expanded]="expandedBios.has(item.id)"
+        >
+          {{ item.description }}
+        </p>
+        <button
+          type="button"
+          class="read-more"
+          *ngIf="expandedBios.has(item.id) || bioOverflows(bio)"
+          [attr.aria-expanded]="expandedBios.has(item.id)"
+          [attr.aria-controls]="'bio-' + item.id"
+          (click)="toggleBio(item)"
+        >
+          {{ expandedBios.has(item.id) ? 'Read less' : 'Read more' }}
+        </button>
         <div class="actions" *ngIf="isCmsRoute && editing">
           <button (click)="editItem('staff', item)">Edit</button
           ><button (click)="deleteItem('staff', item)">Delete</button>

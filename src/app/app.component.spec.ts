@@ -63,6 +63,33 @@ describe('Maven website editor', () => {
     fixture.detectChanges()
     return fixture
   }
+  it('offers "Read more" only for biographies cut off by the preview', async () => {
+    const data = content()
+    data.staff[0].description = 'A long biography sentence. '.repeat(60)
+    data.staff[1].description = 'Short biography.'
+    website.load.and.resolveTo(data)
+    const fixture = await setup(false)
+    document.body.append(fixture.nativeElement) // real layout for measuring
+    fixture.detectChanges()
+    const [long, short] = fixture.nativeElement.querySelectorAll(
+      '#staff-list article'
+    )
+    expect(short.querySelector('.read-more')).toBeNull()
+    const button = long.querySelector('.read-more') as HTMLButtonElement
+    expect(button.textContent.trim()).toBe('Read more')
+    expect(button.getAttribute('aria-expanded')).toBe('false')
+    const clampedHeight = long.querySelector('.bio').clientHeight
+
+    button.click()
+    fixture.detectChanges()
+    expect(long.querySelector('.bio').classList).toContain('expanded')
+    expect(long.querySelector('.bio').clientHeight).toBeGreaterThan(
+      clampedHeight
+    )
+    expect(button.textContent.trim()).toBe('Read less')
+    expect(button.getAttribute('aria-expanded')).toBe('true')
+    fixture.nativeElement.remove()
+  })
   it('loads profiles without showing editing controls or removed content', async () => {
     const fixture = await setup(false)
     expect(fixture.nativeElement.querySelector('button.edit')).toBeNull()
