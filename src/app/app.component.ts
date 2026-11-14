@@ -4,6 +4,7 @@ import {
   Component,
   DestroyRef,
   ElementRef,
+  HostListener,
   inject,
   OnInit,
   ViewChild,
@@ -54,7 +55,22 @@ export class AppComponent implements OnInit {
   draft: WebsiteItem = { id: '', name: '', photoX: 50, photoY: 50 }
   preview = ''
   previewRatio = '618 / 864'
+  /** Staff ids whose biography is expanded past the clamped preview. */
+  expandedBios = new Set<string>()
   private file?: File
+
+  /** Re-check which clamped biographies overflow after a resize. */
+  @HostListener('window:resize')
+  onResize() {
+    // Handling the event is enough: it triggers change detection.
+  }
+  /** True when a clamped biography hides text, so "Read more" is useful. */
+  bioOverflows(bio: HTMLElement) {
+    return bio.scrollHeight > bio.clientHeight + 1
+  }
+  toggleBio(item: WebsiteItem) {
+    if (!this.expandedBios.delete(item.id)) this.expandedBios.add(item.id)
+  }
 
   async ngOnInit() {
     this.router.events
