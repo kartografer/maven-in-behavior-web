@@ -228,10 +228,14 @@ section {
   overflow: hidden;
   container-type: size;
 }
-// Team photos keep one modest size on every screen, centered in the card.
+// Team cards are exactly as wide as their 232×324 photo, so the photo fills
+// the top of the card edge to edge.
+.staff .grid {
+  grid-template-columns: repeat(auto-fill, 232px);
+  justify-content: center;
+}
 .staff .portrait {
-  width: min(100%, 232px);
-  margin: 28px auto 0;
+  width: 100%;
 }
 // Focal-point crop: keep (--focus-x, --focus-y) at the center of the box,
 // clamped so the photo always covers it. --photo-ratio (height / width) is
@@ -260,6 +264,12 @@ section {
 .staff p {
   font-size: 14px;
   margin-top: 9px;
+}
+.staff .card h3,
+.staff .card p,
+.staff .card .actions {
+  margin-left: 16px;
+  margin-right: 16px;
 }
 .portrait span {
   font:
@@ -454,12 +464,7 @@ body:has(dialog[open]) {
     padding: 15px;
   }
 }
-// Team grid: 3 columns on desktop, 2 on tablet, 1 on phones.
-@media (max-width: 1024px) {
-  .staff .grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
+// Phones: one full-width card per row; the photo grows with the card.
 @media (max-width: 560px) {
   .staff .grid {
     grid-template-columns: 1fr;
