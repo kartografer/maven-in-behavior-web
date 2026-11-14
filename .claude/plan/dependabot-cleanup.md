@@ -3,6 +3,7 @@
 - **Branch:** `bugfix/dependabot-cleanup` (from `main` at `ab3028b`)
 - **Reviewed:** 2026-11-13
 - **Status:** Phase 1 implemented and validated, PR opened. Phases 2–4 still to do.
+- **Update 2026-11-14:** Phases 2–4 are now planned in more detail in [`angular-upgrade.md`](angular-upgrade.md). Angular 20 support ends 2026-11-28.
 
 ## Progress
 
