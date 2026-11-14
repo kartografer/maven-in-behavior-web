@@ -228,6 +228,11 @@ section {
   overflow: hidden;
   container-type: size;
 }
+// Team photos keep one modest size on every screen, centered in the card.
+.staff .portrait {
+  width: min(100%, 232px);
+  margin: 28px auto 0;
+}
 // Focal-point crop: keep (--focus-x, --focus-y) at the center of the box,
 // clamped so the photo always covers it. --photo-ratio (height / width) is
 // set on load; --cover-w/h are the photo's rendered size under object-fit.
