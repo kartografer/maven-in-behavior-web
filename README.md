@@ -160,7 +160,7 @@ GitHub Actions workflow is defined in `.github/workflows/node.js.yml`.
 
 ## Brand refresh and owner editor
 
-The `feature/maven-brand-refresh` branch brings the latest Maven website design into native Angular templates and forms. It includes the brand-guide colors, logo and embedded font subsets, a website content snapshot and the staff profiles/photos already present in this public repository, and individual staff/service/insurance editing. Staff photos have live crop previews and face-position (focal point) controls that keep the face in frame at every screen size. The two decorative circles, the “Small steps” section, “Thoughtful support,” and the “Discover how we can help” link remain removed.
+The `feature/maven-brand-refresh` branch brings the latest Maven website design into native Angular templates and forms. It includes the brand-guide colors, logo and embedded font subsets, a website content snapshot and the staff profiles/photos already present in this public repository, and individual staff/service/insurance editing. Staff photos display in a fixed 5:7 portrait frame (3 columns on desktop, 2 on tablet, 1 on phones) with live previews and face-position controls. **Staff photo guideline:** portrait, 5:7 shape, at least 618 × 864 px (the size of the current photos), head and shoulders on a plain background. Photos in other shapes are cropped around the face position. The two decorative circles, the “Small steps” section, “Thoughtful support,” and the “Discover how we can help” link remain removed.
 
 ### Firebase setup before enabling production editing
 

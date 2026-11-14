@@ -222,7 +222,12 @@
             type="file"
             accept="image/jpeg,image/png,image/webp"
             (change)="selectPhoto($event)"
-        /></label>
+          /><span class="hint"
+            >Portrait photo in a 5:7 shape, at least 618 × 864 px, on a plain
+            background. Other shapes are cropped around the face position
+            below.</span
+          ></label
+        >
         <div
           class="portrait editor-preview"
           *ngIf="preview || draft.photo"

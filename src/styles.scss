@@ -217,8 +217,10 @@ section {
   background: #f7f3ee;
   padding: 0 0 25px;
 }
+// Staff photos are 618×864 portraits; the frame uses the same shape at every
+// width so they show uncropped. Other shapes fall back to the focal-point crop.
 .portrait {
-  height: 280px;
+  aspect-ratio: 618 / 864;
   background: #e6bfb7;
   display: flex;
   align-items: center;
@@ -446,8 +448,16 @@ body:has(dialog[open]) {
     min-width: 130px;
     padding: 15px;
   }
-  .portrait {
-    height: 340px;
+}
+// Team grid: 3 columns on desktop, 2 on tablet, 1 on phones.
+@media (max-width: 1024px) {
+  .staff .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 560px) {
+  .staff .grid {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -455,12 +465,18 @@ body:has(dialog[open]) {
   display: none !important;
 }
 .editor-preview {
-  width: 330px;
+  width: 240px;
   max-width: 100%;
   height: auto;
-  aspect-ratio: 330/280;
+  aspect-ratio: 618 / 864;
   margin: 16px auto;
   position: relative;
+}
+.hint {
+  display: block;
+  margin-top: 6px;
+  font-size: 12px;
+  opacity: 0.75;
 }
 .editor-preview img {
   position: absolute;

@@ -53,7 +53,7 @@ export class AppComponent implements OnInit {
   textValue = ''
   draft: WebsiteItem = { id: '', name: '', photoX: 50, photoY: 50 }
   preview = ''
-  previewRatio = '330 / 280'
+  previewRatio = '618 / 864'
   private file?: File
 
   async ngOnInit() {
@@ -126,7 +126,7 @@ export class AppComponent implements OnInit {
     this.previewRatio =
       portrait?.width && portrait?.height
         ? `${portrait.width} / ${portrait.height}`
-        : '330 / 280'
+        : '618 / 864'
     this.openEditor()
   }
   private openEditor() {
