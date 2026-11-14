@@ -32,6 +32,7 @@
 - **The builder migration moved output to `dist/web/browser`.** I set `outputPath.browser: ""` to keep `dist/web`, so `firebase.json` and the deploy workflow need no change. Karma `polyfills` had to be an array, and the old `@angular-devkit/build-angular` Karma framework entry was removed.
 - **`@modelcontextprotocol/sdk`** is now 1.32.1 via CLI 21, so no override was needed.
 - **Run migrations with a pinned version:** `ng update @angular/cli --name …` without a version fetches the latest CLI (22), which needs Node ≥ 24.15. Use `@angular/cli@21`.
+- **Lockfile and npm version:** the first CI run failed at `npm ci`. CI uses Node 24.22.2 (npm 11.19.1), which requires the optional `@emnapi/*` peers of `@napi-rs/wasm-runtime` in the lockfile; local npm 11.6.2 (Node 24.13.0) left them out. The lockfile is now generated with **npm 11.19.1**. Local Node 24.13's npm in turn rejects that lockfile (it expects extra nested `readdirp` copies), so **local development needs Node ≥ 24.22**: `nvm install 24 && nvm alias default 24`. Until then, use `npx npm@11.19.1 ci` / `npx npm@11.19.1 install`.
 
 **Results:**
 
@@ -62,6 +63,8 @@
 - [ ] Later: Angular 22, once `@angular/fire` 22 is stable (TypeScript 6, Node ≥ 24.15).
 - [ ] Optional: Karma → Vitest.
 - [ ] Optional: add a `favicon.ico`, or remove it from `angular.json` assets.
+- [ ] Update local Node to ≥ 24.22 (matches CI; Angular 22 will need ≥ 24.15). Consider adding an `.nvmrc` so local and CI stay aligned.
+- [ ] npm 11.19 warns that 7 packages' install scripts are "not yet covered by allowScripts" (including `@firebase/util`, `@parcel/watcher` and `puppeteer`'s Chrome download). A future npm will block them by default; add an `allowScripts` list before that happens, or CI tests will lose Chrome.
 
 ## TL;DR
 
