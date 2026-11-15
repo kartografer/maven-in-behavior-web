@@ -376,6 +376,13 @@ section {
 .contact p {
   margin: 25px auto;
 }
+// Contact message and address are separate CMS fields shown as one block.
+.contact .contact-details {
+  margin: 25px auto;
+}
+.contact .contact-details p {
+  margin: 0 auto;
+}
 // Text edited in the CMS keeps the editor's line breaks (press Enter in the
 // text box), e.g. phone and email on one line, the address on the next.
 .cms-text {

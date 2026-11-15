@@ -16,6 +16,7 @@ export type TextKey =
   | 'insuranceText'
   | 'contactText'
   | 'contactEmail'
+  | 'contactAddress'
 export interface WebsiteItem {
   id: string
   name: string
@@ -31,6 +32,8 @@ export interface WebsiteContent {
   insuranceText: string
   contactText: string
   contactEmail: string
+  /** Shown under the contact message; missing in content saved before it existed. */
+  contactAddress?: string
   staff: WebsiteItem[]
   services: WebsiteItem[]
   insurance: WebsiteItem[]

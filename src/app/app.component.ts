@@ -38,6 +38,7 @@ export class AppComponent implements OnInit {
     insuranceText: '',
     contactText: '',
     contactEmail: '',
+    contactAddress: '',
     staff: [],
     services: [],
     insurance: [],
@@ -119,7 +120,7 @@ export class AppComponent implements OnInit {
   editText(key: TextKey) {
     if (!this.editing) return
     this.textKey = key
-    this.textValue = this.content[key]
+    this.textValue = this.content[key] ?? ''
     this.openEditor()
   }
   editItem(section: Section, item?: WebsiteItem) {

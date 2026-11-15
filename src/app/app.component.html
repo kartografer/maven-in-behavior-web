@@ -207,7 +207,14 @@
   <section class="contact" id="contact">
     <div class="eyebrow">You don’t have to figure it out alone</div>
     <h2>A new chapter starts<br />with a conversation</h2>
-    <p id="contactText" class="cms-text">{{ content.contactText }}</p>
+    <div class="contact-details">
+      <p id="contactText" class="cms-text">{{ content.contactText }}</p>
+      @if (content.contactAddress) {
+        <p id="contactAddress" class="cms-text">
+          {{ content.contactAddress }}
+        </p>
+      }
+    </div>
     <a
       class="button"
       id="contactLink"
@@ -218,6 +225,7 @@
     @if (isCmsRoute && editing) {
       <div class="actions" style="justify-content: center">
         <button (click)="editText('contactText')">Edit contact message</button
+        ><button (click)="editText('contactAddress')">Edit address</button
         ><button (click)="editText('contactEmail')">Set contact email</button>
       </div>
     }
@@ -238,7 +246,13 @@
     <h3>{{ textKey ? 'Edit website text' : 'Edit ' + section }}</h3>
     @if (textKey) {
       <label
-        >{{ textKey === 'contactEmail' ? 'Contact email' : 'Text' }}
+        >{{
+          textKey === 'contactEmail'
+            ? 'Contact email'
+            : textKey === 'contactAddress'
+              ? 'Address'
+              : 'Text'
+        }}
         @if (textKey !== 'contactEmail') {
           <textarea
             name="text"
