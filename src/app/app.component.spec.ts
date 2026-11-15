@@ -167,6 +167,35 @@ describe('Maven website editor', () => {
     expect(app.content.staff.map((item) => item.id)).toEqual(['two'])
     expect(app.content.insurance.length).toBe(1)
   })
+  it('shows the contact message and address as separate CMS paragraphs', async () => {
+    const data = content()
+    data.contactText = 'Call us.'
+    data.contactAddress = '1 Main St.'
+    website.load.and.resolveTo(data)
+    const fixture = await setup()
+    const text = (id: string) =>
+      fixture.nativeElement.querySelector(id)?.innerText ?? null
+    document.body.append(fixture.nativeElement) // innerText needs layout
+    expect(text('#contactText')).toBe('Call us.')
+    expect(text('#contactAddress')).toBe('1 Main St.')
+
+    // Content saved before the address field existed shows no address.
+    delete fixture.componentInstance.content.contactAddress
+    fixture.detectChanges()
+    expect(text('#contactAddress')).toBeNull()
+
+    const app = fixture.componentInstance
+    await app.startEditing()
+    app.editText('contactAddress')
+    expect(app.textValue).toBe('')
+    app.textValue = '  7000 SW 62nd Ave  '
+    await app.save()
+    fixture.detectChanges()
+    expect(app.content.contactAddress).toBe('7000 SW 62nd Ave')
+    expect(app.content.contactText).toBe('Call us.')
+    expect(text('#contactAddress')).toBe('7000 SW 62nd Ave')
+    fixture.nativeElement.remove()
+  })
   it('centers and clamps photo focal points', async () => {
     const app = (await setup()).componentInstance
     app.draft = { id: 'one', name: 'Test', photoX: 10, photoY: 90 }
