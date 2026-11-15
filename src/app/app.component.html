@@ -37,7 +37,7 @@
     <div>
       <div class="eyebrow">South Miami, Florida · EST.2021</div>
       <h1>A place to grow<br />A team who cares</h1>
-      <p id="heroText">{{ content.heroText }}</p>
+      <p id="heroText" class="cms-text">{{ content.heroText }}</p>
       <a href="#contact" class="button">Click here to learn more</a>
       @if (isCmsRoute && editing) {
         <div class="actions">
@@ -64,7 +64,7 @@
       <h2>Your child’s journey<br />Our shared purpose</h2>
     </div>
     <div>
-      <p id="aboutText">{{ content.aboutText }}</p>
+      <p id="aboutText" class="cms-text">{{ content.aboutText }}</p>
       <p>
         We believe every child deserves to feel safe, supported, and truly
         known. Together, we build confidence and meaningful skills for everyday
@@ -177,7 +177,7 @@
   <section class="insurance" id="insurance">
     <div class="eyebrow">Making care accessible</div>
     <h2>More ways to access the care your child deserves</h2>
-    <p id="insuranceText">{{ content.insuranceText }}</p>
+    <p id="insuranceText" class="cms-text">{{ content.insuranceText }}</p>
     @if (isCmsRoute && editing) {
       <div class="actions">
         <button (click)="editText('insuranceText')">
@@ -207,7 +207,7 @@
   <section class="contact" id="contact">
     <div class="eyebrow">You don’t have to figure it out alone</div>
     <h2>A new chapter starts<br />with a conversation</h2>
-    <p id="contactText">{{ content.contactText }}</p>
+    <p id="contactText" class="cms-text">{{ content.contactText }}</p>
     <a
       class="button"
       id="contactLink"

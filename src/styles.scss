@@ -376,6 +376,11 @@ section {
 .contact p {
   margin: 25px auto;
 }
+// Text edited in the CMS keeps the editor's line breaks (press Enter in the
+// text box), e.g. phone and email on one line, the address on the next.
+.cms-text {
+  white-space: pre-line;
+}
 .contact .button {
   background: #e6bfb7;
   color: #334436;
