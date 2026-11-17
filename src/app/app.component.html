@@ -156,8 +156,36 @@
           }
           @if (isCmsRoute && editing) {
             <div class="actions">
-              <button (click)="editItem('staff', item)">Edit</button
-              ><button (click)="deleteItem('staff', item)">Delete</button>
+              <button
+                type="button"
+                (click)="editItem('staff', item)"
+                [disabled]="reorderingStaff"
+              >
+                Edit
+              </button>
+              <button
+                type="button"
+                (click)="deleteItem('staff', item)"
+                [disabled]="reorderingStaff"
+              >
+                Delete
+              </button>
+              <button
+                type="button"
+                (click)="moveStaff(item, -1)"
+                [disabled]="$first || reorderingStaff || saving"
+                [attr.aria-label]="'Move ' + item.name + ' earlier'"
+              >
+                Move earlier
+              </button>
+              <button
+                type="button"
+                (click)="moveStaff(item, 1)"
+                [disabled]="$last || reorderingStaff || saving"
+                [attr.aria-label]="'Move ' + item.name + ' later'"
+              >
+                Move later
+              </button>
             </div>
           }
         </article>

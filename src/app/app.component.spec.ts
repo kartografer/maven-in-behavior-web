@@ -246,4 +246,55 @@ describe('Maven website editor', () => {
     expect(app.content.staff[0].photo).toBe('')
     expect(app.content.staff.length).toBe(2)
   })
+  it('saves staff order in both directions without changing profile data or other sections', async () => {
+    const app = (await setup()).componentInstance
+    await app.startEditing()
+    const original = structuredClone(app.content)
+    await app.moveStaff(app.content.staff[1], -1)
+    expect(app.content.staff.map((item) => item.id)).toEqual(['two', 'one'])
+    expect(app.content.staff[1]).toEqual(original.staff[0])
+    expect(app.content.services).toEqual(original.services)
+    expect(app.content.insurance).toEqual(original.insurance)
+    await app.moveStaff(app.content.staff[0], 1)
+    expect(app.content.staff).toEqual(original.staff)
+  })
+  it('shows reorder controls only in CMS edit mode and disables list boundaries', async () => {
+    const fixture = await setup(),
+      app = fixture.componentInstance
+    expect(
+      fixture.nativeElement.querySelector(
+        '[aria-label="Move First person earlier"]'
+      )
+    ).toBeNull()
+    await app.startEditing()
+    fixture.detectChanges()
+    expect(
+      fixture.nativeElement.querySelector(
+        '[aria-label="Move First person earlier"]'
+      ).disabled
+    ).toBeTrue()
+    expect(
+      fixture.nativeElement.querySelector(
+        '[aria-label="Move Second person later"]'
+      ).disabled
+    ).toBeTrue()
+    await TestBed.inject(Router).navigateByUrl('/')
+    fixture.detectChanges()
+    expect(
+      fixture.nativeElement.querySelector(
+        '[aria-label="Move First person later"]'
+      )
+    ).toBeNull()
+    await app.moveStaff(app.content.staff[0], 1)
+    expect(website.update).not.toHaveBeenCalled()
+  })
+  it('keeps the displayed order on save failure and allows retrying', async () => {
+    const app = (await setup()).componentInstance
+    await app.startEditing()
+    website.update.and.rejectWith(new Error('Save failed'))
+    await app.moveStaff(app.content.staff[0], 1)
+    expect(app.content.staff.map((item) => item.id)).toEqual(['one', 'two'])
+    expect(app.reorderingStaff).toBeFalse()
+    expect(app.error).toBe('Save failed')
+  })
 })

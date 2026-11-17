@@ -46,6 +46,7 @@ export class AppComponent implements OnInit {
   editing = false
   signingIn = false
   saving = false
+  reorderingStaff = false
   status = ''
   error = ''
   dialogStatus = ''
@@ -264,6 +265,47 @@ export class AppComponent implements OnInit {
       this.dialogStatus = this.message(error)
     } finally {
       this.saving = false
+    }
+  }
+  async moveStaff(item: WebsiteItem, direction: -1 | 1) {
+    if (
+      !this.isCmsRoute ||
+      !this.editing ||
+      this.saving ||
+      this.reorderingStaff
+    )
+      return
+    const index = this.content.staff.findIndex(
+      (member) => member.id === item.id
+    )
+    if (
+      index < 0 ||
+      index + direction < 0 ||
+      index + direction >= this.content.staff.length
+    )
+      return
+    this.reorderingStaff = true
+    this.error = ''
+    this.status = 'Saving staff order…'
+    try {
+      this.content = await this.website.update(this.content, (next) => {
+        // Resolve the position against the latest saved list on each transaction retry.
+        const current = next.staff.findIndex((member) => member.id === item.id)
+        if (current < 0)
+          throw new Error(
+            'This staff member was removed. Refresh and try again.'
+          )
+        const target = current + direction
+        if (target < 0 || target >= next.staff.length) return
+        const [member] = next.staff.splice(current, 1)
+        next.staff.splice(target, 0, member)
+      })
+      this.status = 'Staff order saved'
+    } catch (error) {
+      this.status = ''
+      this.error = this.message(error)
+    } finally {
+      this.reorderingStaff = false
     }
   }
   async deleteItem(section: Section, item: WebsiteItem) {
