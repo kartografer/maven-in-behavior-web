@@ -601,3 +601,11 @@ body:has(dialog[open]) {
 input[type='range'] {
   padding: 0;
 }
+
+.staff .actions {
+  flex-wrap: wrap;
+}
+.staff .actions button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
